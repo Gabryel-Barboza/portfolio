@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-[300px] text-center">
-    <h2 class="text-3xl text-center mt-4">Projetos</h2>
+    <h2 class="text-3xl mt-4">Projetos</h2>
     <ProjectCard
       v-for="(project, index) in projects"
       :key="index"

@@ -8,6 +8,7 @@ const showProjects = ref(false);
 
 const projectInterval = setInterval(() => {
   let i = 0;
+
   if (counterStore.projects.length) {
     showProjects.value = true;
     clearInterval(projectInterval);
@@ -25,5 +26,46 @@ const projectInterval = setInterval(() => {
 </script>
 
 <template>
-  <ProjectSection v-if="showProjects" />
+  <transition name="fade">
+    <ProjectSection v-if="showProjects" />
+    <div v-else class="w-full text-blue-600 text-center text-xl font-bold">
+      Carregado projetos
+      <span class="loading"></span><span class="loading"></span><span class="loading"></span>
+    </div>
+  </transition>
 </template>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 1s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.loading {
+  display: inline-block;
+  border: 2px solid;
+  border-radius: 50%;
+  margin: 0px 2px;
+}
+
+.loading:nth-child(1) {
+  animation: loading 1s ease infinite alternate;
+}
+.loading:nth-child(2) {
+  animation: loading 1s ease 0.3s infinite alternate;
+}
+.loading:nth-child(3) {
+  animation: loading 1s ease 0.6s infinite alternate;
+}
+
+@keyframes loading {
+  to {
+    transform: scale(1.7);
+  }
+}
+</style>

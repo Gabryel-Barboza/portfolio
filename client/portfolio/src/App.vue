@@ -15,7 +15,7 @@ counterStore.fetchResume().then(() => console.log('Resume loaded'));
     <HeaderSection />
   </header>
   <NavBar />
-  <main class="w-full max-w-[800px] min-h-[200px] mx-auto">
+  <main class="flex items-center w-full max-w-[800px] min-h-[200px] mx-auto">
     <RouterView />
   </main>
   <footer>

@@ -6,6 +6,10 @@ import type { ResumeObject as ResumeSchema } from '@/schemas/ResumeSchema';
 const PROJECTS_URL = import.meta.env.VITE_REPOSITORY_URL;
 const RESUME_URL = import.meta.env.VITE_RESUME_URL;
 
+if (!PROJECTS_URL || !RESUME_URL) {
+  console.warn('Variáveis ambiente de repositório não configuradas!');
+}
+
 export const useCounterStore = defineStore('counter', {
   state: () => ({
     projects: reactive([]),

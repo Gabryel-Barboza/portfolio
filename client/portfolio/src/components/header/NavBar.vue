@@ -40,7 +40,7 @@ li:has(.tab_selected) {
   color: gray;
 }
 
-.routerlink:hover {
+.routerlink:hover:not(.tab_selected) {
   color: white;
 }
 

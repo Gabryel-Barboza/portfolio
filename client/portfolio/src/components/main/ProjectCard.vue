@@ -42,6 +42,7 @@
   </div>
 </template>
 <script setup lang="ts">
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps(['imgUrl', 'projUrl', 'projUrl', 'tags', 'lastUpd']);
 </script>
 <style scoped>
@@ -55,73 +56,5 @@ const props = defineProps(['imgUrl', 'projUrl', 'projUrl', 'tags', 'lastUpd']);
   background-image: linear-gradient(#eb8d8d, #155dfc);
   z-index: -1;
   animation: border-movement 5s ease-in-out 3s infinite forwards;
-}
-
-.tag {
-  font-size: 0.9rem;
-  color: white;
-  padding: 3px 5px;
-  margin: auto 4px;
-  border-radius: 10px;
-}
-
-.tag-html5 {
-  background-color: #f16425;
-}
-
-.tag-css3 {
-  background-color: #0070ba;
-}
-
-.tag-javascript {
-  background-color: #fede00;
-}
-
-.tag-tailwindcss {
-  background-color: #00bcff;
-}
-
-.tag-nodejs {
-  background-color: #8bc500;
-}
-
-.tag-typescript {
-  background-color: #107dcb;
-}
-
-.tag-vuejs {
-  background-color: #50b88b;
-}
-
-.tag-python {
-  background-color: #09c882;
-}
-
-.tag-fastapi {
-  background-color: #0b938c;
-}
-
-.tag-django {
-  background-color: #0f3e2e;
-}
-
-.tag-mysql {
-  background-color: #006189;
-}
-
-.tag-site {
-  background-color: #c91515;
-}
-
-.tag-api {
-  background-color: #10aa36;
-}
-
-.tag-AI {
-  background-color: #ddc916;
-}
-
-.tag-fullstack {
-  background-color: #3b0ea5;
 }
 </style>

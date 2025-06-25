@@ -1,14 +1,14 @@
 <template>
   <div
     :class="[
-      'w-full max-w-9/10 mx-auto my-10 text-white p-4 bg-gray-800 rounded-md shadow-md shadow-black/30',
+      'w-full max-w-9/10 mx-auto my-10 text-white p-4 bg-gray-800 border-2 border-black/30 rounded-md shadow-md shadow-black/30',
       resumeClass,
     ]"
     @click="openResume"
   >
-    <h2 class="text-2xl font-bold">Currículo</h2>
+    <h2 v-if="!showResume" class="text-2xl font-bold">Sobre Mim</h2>
     <transition name="open">
-      <ResumeCard v-if="showResume" :resume="counterStore.resume" />
+      <ResumeCard v-if="showResume" :resume="counterStore.getResume()" />
     </transition>
   </div>
 </template>

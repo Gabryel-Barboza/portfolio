@@ -8,8 +8,7 @@ import ProfileCard from '@/components/header/ProfileCard.vue';
 </script>
 <style scoped>
 .bg-gradient {
-  background-color: #a5d8ff;
-  background-image: radial-gradient(#155dfc 0%, #a5d8ff 100%);
+  background: #a5d8ff radial-gradient(#155dfc 0%, #a5d8ff 100%);
   transition: background 0.5s;
   z-index: -5;
 }

@@ -23,4 +23,4 @@ counterStore.fetchResume().then(() => console.log('Resume loaded'));
   </footer>
 </template>
 
-<style scoped></style>
+<style></style>

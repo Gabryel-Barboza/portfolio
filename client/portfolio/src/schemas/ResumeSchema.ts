@@ -11,7 +11,6 @@ interface Hobby {
 interface Tech {
   name: string;
   description: string;
-  extra: Omit<Tech, 'extra'>;
 }
 
 interface Degree {
@@ -20,7 +19,11 @@ interface Degree {
   date: string;
 }
 
-type Course = Omit<Degree, 'college'>;
+interface Course {
+  name: string;
+  date: string;
+  certificate: string;
+}
 
 interface Education {
   degrees: Degree[];
@@ -36,5 +39,6 @@ export interface ResumeObject {
   bio: string;
   hobbies: Hobby[];
   stack: Tech[];
+  extra: Tech[];
   education: Education;
 }

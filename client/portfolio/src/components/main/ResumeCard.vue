@@ -3,76 +3,96 @@
     <h3 class="text-xl text-center font-bold">{{ resume.name }}</h3>
 
     <div class="container bg-gray-800">
-      <div class="container-title">
+      <div
+        class="container-title"
+        @click="personalInfoClass = changeDisplay(personalInfoClass, $event)"
+      >
         <span>Informações Pessoais</span>
-        <button
-          @click="personalInfoClass = changeDisplay(personalInfoClass, $event)"
-          class="container-btn"
-        >
-          >
-        </button>
+        <button class="container-btn">></button>
       </div>
 
       <div :class="personalInfoClass">
-        <span>Idade: {{ resume.age }}</span>
-        <span v-for="(contact, index) in resume.contacts" :key="index">{{ contact }}</span>
-        <span>Bio: {{ resume.bio }}</span>
+        <div class="w-full">
+          <span class="info-key">bio:</span> <span class="info-text">{{ resume.bio }}</span>
+          <span class="info-key">idade:</span> <span class="info-text">{{ resume.age }}</span>
+          <span class="info-key">email:</span>
+          <a class="info-text" :href="'mailto:' + resume.contacts.email">{{
+            resume.contacts.email
+          }}</a>
+          <span class="info-key">telefone:</span>
+          <a class="info-text" :href="'tel:' + resume.contacts.phone">{{
+            resume.contacts.phone
+          }}</a>
+        </div>
       </div>
     </div>
 
     <div class="container bg-gray-800">
-      <div class="container-title">
+      <div class="container-title" @click="hobbyInfoClass = changeDisplay(hobbyInfoClass, $event)">
         <span>Hobbies</span>
-        <button
-          @click="hobbyInfoClass = changeDisplay(hobbyInfoClass, $event)"
-          class="container-btn"
-        >
-          >
-        </button>
+        <button class="container-btn">></button>
       </div>
 
       <div :class="hobbyInfoClass">
         <ul>
-          <li v-for="(hobby, index) in resume.hobbies" :key="index">
-            {{ hobby.hobby }} : {{ hobby.description }}
+          <li class="list-item" v-for="(hobby, index) in resume.hobbies" :key="index">
+            <span class="list-item-name">{{ hobby.hobby }}</span>
+            <span class="list-item-description">{{ hobby.description }}</span>
           </li>
         </ul>
       </div>
     </div>
 
-    <div class="container bg-gray-800">
+    <div
+      class="container bg-gray-800"
+      @click="stackInfoClass = changeDisplay(stackInfoClass, $event)"
+    >
       <div class="container-title">
         <span>Tecnologias</span>
-        <button
-          @click="stackInfoClass = changeDisplay(stackInfoClass, $event)"
-          class="container-btn"
-        >
-          >
-        </button>
+        <button class="container-btn">></button>
       </div>
 
       <div :class="stackInfoClass">
         <ul>
           <li v-for="(tech, index) in resume.stack" :key="index">
-            {{ tech.name }} : {{ tech.description }}
+            <span :class="`p-1 rounded-sm sm:text-lg tag-${tech.name}`">{{ tech.name }}</span>
+            <span class="list-item-description">{{ tech.description }}</span>
           </li>
         </ul>
+
+        <p class="my-2 font-bold">Habilidades Adicionais</p>
+
+        <li v-for="(tech, index) in resume.extra" :key="index">
+          <span :class="`p-1 rounded-sm sm:text-lg tag-${tech.name}`">{{ tech.name }}</span>
+          <span class="list-item-description">{{ tech.description }}</span>
+        </li>
       </div>
     </div>
 
-    <div class="container bg-gray-800">
-      <div class="container-title">
+    <div class="container">
+      <div
+        class="container-title"
+        @click="educationInfoClass = changeDisplay(educationInfoClass, $event)"
+      >
         <span>Formação Acadêmica</span>
-        <button
-          @click="educationInfoClass = changeDisplay(educationInfoClass, $event)"
-          class="container-btn"
-        >
-          >
-        </button>
+        <button class="container-btn">></button>
       </div>
 
       <div :class="educationInfoClass">
-        <span v-for="(item, index) in resume.education" :key="index">{{ item }}</span>
+        <ul>
+          <li class="education-li" v-for="(degree, index) in resume.education.degrees" :key="index">
+            <span class="font-bold">{{ degree.college }}</span>
+            <span class="block text-blue-600">{{ degree.course }}</span>
+            <span class="bg-gray-600">[{{ degree.date }}]</span>
+          </li>
+
+          <p class="bg-white text-black my-4 px-2 w-max">Cursos</p>
+
+          <li class="education-li" v-for="(course, index) in resume.education.courses" :key="index">
+            <span class="font-bold block">{{ course.name }}</span>
+            <span class="bg-gray-600">{{ course.date }}</span>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -82,26 +102,26 @@
 import type { ResumeObject } from '@/schemas/ResumeSchema';
 import { ref } from 'vue';
 
-const props = defineProps(['resume']);
-const resume: ResumeObject = props.resume;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const props = defineProps<{ resume: ResumeObject }>();
 
 const personalInfoClass = ref('container-info hidden flex flex-wrap justify-between');
 const hobbyInfoClass = ref('container-info hidden');
 const stackInfoClass = ref('container-info hidden');
 const educationInfoClass = ref('container-info hidden');
 
-const changeDisplay = (cls: string, $evt: any) => {
+const changeDisplay = (cls: string, $evt: MouseEvent) => {
   // Alterar classes do botão para ativar animação
-  let btn = $evt.target.classList;
-  btn.contains('btn-rotate') ? (btn = ['container-btn']) : (btn = ['btn-rotate container-btn']);
-  $evt.target.classList = btn;
+  if ($evt && $evt.target) {
+    const btnDiv = $evt.target as HTMLDivElement;
+    const btn = btnDiv.nodeName === 'BUTTON' ? btnDiv : btnDiv.querySelector('button');
 
-  //Alterar cor de fundo do container pai
-  let btnParent = $evt.target.parentElement.classList;
-  btnParent.contains('title-animate')
-    ? (btnParent = ['container-title bg-gray-800'])
-    : (btnParent = ['container-title title-animate']);
-  $evt.target.parentElement.classList = btnParent;
+    if (btn) {
+      btn.classList = btn.classList.contains('btn-rotate')
+        ? 'container-btn'
+        : 'container-btn btn-rotate';
+    }
+  }
 
   // Adicionar/retirar propriedade para esconder elemento
   return cls.includes('hidden') ? cls.replace('hidden', '') : cls + ' hidden';
@@ -110,11 +130,15 @@ const changeDisplay = (cls: string, $evt: any) => {
 
 <style scoped>
 .container {
-  overflow-y: scroll;
-  max-height: 300px;
   padding: 8px;
   margin: 10px 0;
   color: #fff;
+  background-color: #1e2939;
+}
+
+.container-title,
+.container-btn {
+  cursor: pointer;
 }
 
 .container-title {
@@ -127,24 +151,50 @@ const changeDisplay = (cls: string, $evt: any) => {
   transition: all 0.3s ease;
 }
 
-.container-btn {
-  cursor: pointer;
-}
-
-.title-animate {
-}
-
 .btn-rotate {
   animation: rotate 0.3s;
   animation-fill-mode: forwards;
 }
 
-.container-info span {
+.info-key {
+  text-transform: capitalize;
+  color: #a5d8ff;
+  font-weight: bold;
+}
+
+.info-text,
+.list-item-description {
+  display: block;
   width: 100%;
+  padding: 4px 6px;
+  margin: 10px 0px 10px -10px;
   background-color: white;
-  padding: 2px;
-  margin: 5px 0;
   color: black;
+}
+
+.list-item,
+.education-li {
+  vertical-align: middle;
+  list-style-type: disc;
+  list-style-position: inside;
+  list-style-image: url('/check.png');
+}
+
+.list-item-name {
+  display: inline-block;
+  margin: 6px 0;
+  color: #a5d8ff;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.list-item-description {
+  padding: 4px 10px;
+}
+
+.education-li {
+  list-style-type: circle;
+  list-style-image: none;
 }
 
 @keyframes rotate {

@@ -4,7 +4,7 @@
   </header>
   <NavBar />
   <main class="flex flex-col items-center w-full max-w-[800px] min-h-[200px] mx-auto">
-    <ProjectPage
+    <ProjectViewer
       v-if="projectOpen"
       :project="project"
       @close-project="closeProject"
@@ -27,7 +27,7 @@ import HeaderSection from '@/components/header/HeaderSection.vue';
 import FooterBar from '@/components/footer/FooterBar.vue';
 import NavBar from '@/components/header/NavBar.vue';
 import ProjectSection from '@/components/main/ProjectSection.vue';
-import ProjectPage from '@/components/main/ProjectPage.vue';
+import ProjectViewer from '@/components/main/ProjectViewer.vue';
 import type { ProjectObject } from '@/schemas/ProjectSchema';
 
 const projectOpen = ref(false);

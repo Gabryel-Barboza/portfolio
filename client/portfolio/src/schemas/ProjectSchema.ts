@@ -3,7 +3,7 @@ export interface ProjectObject {
   imageUrl: string;
   description: string;
   tags: string[];
-  last_update: string;
+  lastUpdate: string;
   projectUrl: string;
 }
 

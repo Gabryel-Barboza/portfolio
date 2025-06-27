@@ -3,7 +3,9 @@
     class="z-[1] flex flex-wrap justify-around gap-1 w-8/10 max-w-[500px] p-4 bg-gray-800 border-2 border-blue-400 rounded-md shadow-md shadow-black/20"
   >
     <div class="profile-picture relative mb-4 mr-2">
-      <img class="w-[120px] rounded-full" :src="profilePicture" alt="Foto de perfil" />
+      <a href="https://github.com/gabryel-barboza" target="_blank"
+        ><img class="w-[120px] rounded-full" :src="profilePicture" alt="Foto de perfil"
+      /></a>
     </div>
     <div class="text-black w-8/10 max-w-[250px] p-4 bg-white rounded-sm shadow-md shadow-black/50">
       <p class="text-center">

@@ -102,8 +102,7 @@
 import type { ResumeObject } from '@/schemas/ResumeSchema';
 import { ref } from 'vue';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const props = defineProps<{ resume: ResumeObject }>();
+defineProps<{ resume: ResumeObject }>();
 
 const personalInfoClass = ref('container-info hidden flex flex-wrap justify-between');
 const hobbyInfoClass = ref('container-info hidden');

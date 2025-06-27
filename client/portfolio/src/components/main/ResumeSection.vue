@@ -20,7 +20,7 @@ import { ref } from 'vue';
 const counterStore = useCounterStore();
 
 const showResume = ref(false);
-const resumeClass = ref('pulse cursor-pointer');
+const resumeClass = ref('an-heartbeat cursor-pointer');
 
 const openResume = () => {
   resumeClass.value = '';
@@ -28,7 +28,7 @@ const openResume = () => {
 };
 </script>
 <style scoped>
-.pulse {
+.an-heartbeat {
   animation: heartbeat 2s ease-in-out infinite alternate;
 }
 

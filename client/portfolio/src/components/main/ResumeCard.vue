@@ -16,13 +16,11 @@
           <span class="info-key">bio:</span> <span class="info-text">{{ resume.bio }}</span>
           <span class="info-key">idade:</span> <span class="info-text">{{ resume.age }}</span>
           <span class="info-key">email:</span>
-          <a class="info-text" :href="'mailto:' + resume.contacts.email">{{
+          <a class="info-text underline" :href="'mailto:' + resume.contacts.email">{{
             resume.contacts.email
           }}</a>
           <span class="info-key">telefone:</span>
-          <a class="info-text" :href="'tel:' + resume.contacts.phone">{{
-            resume.contacts.phone
-          }}</a>
+          <a class="info-text underline" :href="'tel:' + resume.contacts.phone">{{ phone }}</a>
         </div>
       </div>
     </div>
@@ -102,12 +100,18 @@
 import type { ResumeObject } from '@/schemas/ResumeSchema';
 import { ref } from 'vue';
 
-defineProps<{ resume: ResumeObject }>();
+const props = defineProps<{ resume: ResumeObject }>();
 
 const personalInfoClass = ref('container-info hidden flex flex-wrap justify-between');
 const hobbyInfoClass = ref('container-info hidden');
 const stackInfoClass = ref('container-info hidden');
 const educationInfoClass = ref('container-info hidden');
+
+let phone = props.resume.contacts.phone;
+// Formatando o texto para um telefone
+phone = `+${phone.substring(0, 2)}
+(${phone.substring(2, 4)})
+${phone.substring(4, 9)}-${phone.substring(9)}`;
 
 const changeDisplay = (cls: string, $evt: MouseEvent) => {
   // Alterar classes do botão para ativar animação

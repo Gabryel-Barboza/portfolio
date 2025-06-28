@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[
-      'w-full max-w-9/10 mx-auto my-10 text-white p-4 bg-gray-800 border-2 border-black/30 rounded-md shadow-md shadow-black/30',
+      'w-full max-w-[500px] mx-auto my-10 text-white p-4 bg-gray-800 border-2 border-black/30 rounded-md shadow-md shadow-black/30',
       resumeClass,
     ]"
     @click="openResume"

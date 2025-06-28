@@ -1,6 +1,6 @@
 <template>
   <nav class="flex items-center min-h-[100px] p-4 bg-gray-800 z-[-1]">
-    <ul class="overflow-hidden flex justify-start items-center gap-6">
+    <ul class="overflow-hidden mx-auto flex justify-start items-center gap-6">
       <li>
         <RouterLink
           :class="[{ tab_selected: $route.name === 'home' }, 'routerlink']"

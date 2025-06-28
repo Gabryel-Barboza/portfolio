@@ -73,8 +73,16 @@
   background-color: #ddc916;
 }
 
-.tag-Agentic {
+.tag-agentic {
   background-color: #dd7616;
+}
+
+.tag-frontend {
+  background-color: #4c1a9c;
+}
+
+.tag-backend {
+  background-color: #155a15;
 }
 
 .tag-fullstack {
@@ -100,6 +108,18 @@
 @keyframes pulse {
   50% {
     opacity: 0.5;
+  }
+}
+
+@keyframes beat {
+  90% {
+    transform: scale(1);
+  }
+  95% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 

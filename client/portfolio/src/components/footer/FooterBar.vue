@@ -29,7 +29,9 @@
     <SignatureBar />
     <p class="block w-full text-center">
       <img class="inline-block" width="20px" src="/src/assets/contacts.png" /> Favicon por
-      <a class="text-blue-600" href="https://www.flaticon.com/free-icons/contacts">Flaticon</a>
+      <a class="text-blue-600 hover:underline" href="https://www.flaticon.com/free-icons/contacts"
+        >Flaticon</a
+      >
     </p>
   </div>
 </template>

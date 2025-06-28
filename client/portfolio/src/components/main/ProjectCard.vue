@@ -1,13 +1,15 @@
 <template>
-  <div class="flex flex-col items-center gap-2 p-2 pt-8 w-full min-h-[300px]">
+  <div
+    class="flex flex-col items-center gap-2 p-2 pt-8 w-full min-h-[300px] sm:flex-row sm:items-start sm:p-4 sm:gap-6"
+  >
     <img
-      class="w-6/10 max-h-[600px] shadow-md shadow-black/40 border-2 border-blue-600 cursor-pointer"
+      class="min-w-[250px] w-6/10 max-w-[400px] min-h-[200px] max-h-[500px] shadow-md shadow-black/40 border-2 border-blue-600 cursor-pointer md:min-h-[400px] md:min-w-[320px]"
       :src="project.imageUrl"
       @click="$emit('clickProject', project)"
     />
     <div class="w-8/10">
       <div class="title-animate overflow-hidden relative p-[2px] my-2 shadow-md shadow-black/30">
-        <h3 class="font-bold text-lg bg-[#a5d8ff]">
+        <h3 class="font-bold text-lg bg-[#a5d8ff] sm:text-xl">
           {{ project.name }}
         </h3>
       </div>
@@ -28,7 +30,7 @@
 
       <hr class="text-gray-400 my-4" />
 
-      <p class="text-justify">
+      <p class="text-justify sm:text-lg">
         {{ project.description }}
       </p>
 
@@ -36,7 +38,12 @@
 
       <p v-if="project.projectUrl" class="text-md">
         O projeto está disponibilizado publicamente
-        <a class="text-blue-600 font-bold" :href="project.projectUrl" target="_blank">aqui</a>.
+        <a
+          class="text-blue-600 font-bold hover:underline"
+          :href="project.projectUrl"
+          target="_blank"
+          >aqui</a
+        >.
       </p>
     </div>
   </div>

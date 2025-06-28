@@ -38,6 +38,7 @@ li:has(.tab_selected) {
 .routerlink {
   font-size: 1.2rem;
   color: gray;
+  transition: all 0.2s;
 }
 
 .routerlink:hover:not(.tab_selected) {

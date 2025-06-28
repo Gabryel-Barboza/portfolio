@@ -1,6 +1,10 @@
 <template>
-  <div v-if="showProjects" class="min-h-[300px] mb-10 text-center">
-    <h2 class="text-3xl my-4 sm:my-8">Projetos</h2>
+  <div v-if="showProjects" class="relative min-h-[300px] mb-10 text-center">
+    <div class="flex justify-center items-center lg:justify-end">
+      <ProjectSelector @filter-projects="filterProjects" />
+    </div>
+
+    <h2 class="text-3xl mt-4 mb-15 sm:mb-20 lg:text-4xl">Projetos</h2>
     <ProjectCard
       @click-project="(proj) => $emit('clickProject', proj)"
       v-for="(project, index) in projects"
@@ -17,6 +21,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import ProjectCard from '@/components/main/ProjectCard.vue';
+import ProjectSelector from '@/components/main/ProjectSelector.vue';
 import { useCounterStore } from '@/stores/counter';
 
 defineEmits(['clickProject']);
@@ -24,8 +29,18 @@ const counterStore = useCounterStore();
 
 const showProjects = ref(false);
 await counterStore.fetchProjects();
+
+const projects = ref(counterStore.getProjects());
 showProjects.value = true;
-const projects = counterStore.getProjects();
+
+const filterProjects = (tag: string) => {
+  if (tag === 'all') projects.value = counterStore.getProjects();
+  else {
+    const projectList = counterStore.getProjects();
+    const filteredProjects = projectList.filter((project) => project.tags.includes(tag));
+    projects.value = filteredProjects;
+  }
+};
 </script>
 <style scoped>
 .loading {

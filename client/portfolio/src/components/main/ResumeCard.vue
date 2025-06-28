@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-white text-black p-2 my-2 rounded-md">
-    <h3 class="text-xl text-center font-bold">{{ resume.name }}</h3>
+  <div class="bg-white text-black p-2 my-2 rounded-md lg:text-xl">
+    <h3 class="text-xl text-center font-bold lg:text-2xl">{{ resume.name }}</h3>
 
     <div class="container bg-gray-800">
       <div
@@ -150,6 +150,7 @@ const changeDisplay = (cls: string, $evt: MouseEvent) => {
   justify-content: space-between;
   padding: 4px;
   width: 100%;
+  margin: 6px 4px;
   font-weight: 700;
   transition: all 0.3s ease;
 }

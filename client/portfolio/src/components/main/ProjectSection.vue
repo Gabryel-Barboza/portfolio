@@ -4,7 +4,7 @@
       <ProjectSelector @filter-projects="filterProjects" />
     </div>
 
-    <h2 class="text-3xl mt-4 mb-15 sm:mb-20 lg:text-4xl">Projetos</h2>
+    <h2 class="text-3xl mt-6 mb-15 sm:mb-20 lg:text-4xl">Projetos</h2>
     <ProjectCard
       @click-project="(proj) => $emit('clickProject', proj)"
       v-for="(project, index) in projects"

@@ -1,4 +1,6 @@
 # Meu Portfólio 👤
+> Necessita de atualização
+
 Um projeto desenvolvido utilizando as tecnologias **Vue.Js** e **TypeScript** para criar uma página que guarda os principais projetos que realizei durante minha carreira.
 
 O portfolio possui uma arquitetura simples e organizada com base no modelo de camadas ou N-layers, utilizando **Vite** como build tool para acelerar o desenvolvimento do projeto inicial e otimizar o carregamento da página. 

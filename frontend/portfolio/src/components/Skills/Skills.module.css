@@ -1,0 +1,21 @@
+.skillCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.skillCard p {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #fff;
+}
+.skillCard svg {
+  color: var(--emphasis-color);
+  font-size: 1.2em;
+}
+.skillCard span {
+  border-radius: 20px;
+  padding: 4px 10px;
+  background-color: var(--tag-color);
+  color: var(--emphasis-color);
+}

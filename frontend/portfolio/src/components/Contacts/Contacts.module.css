@@ -1,0 +1,40 @@
+.contactCard {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.contactCard p {
+  text-align: justify;
+}
+.contactCard button {
+  cursor: pointer;
+  border-radius: 10px;
+  margin: 15px auto;
+  padding: 5px 10px;
+  background-color: var(--emphasis-color);
+}
+.contactCard button:hover {
+  filter: brightness(1.2);
+}
+.contactCard button a {
+  font-weight: 900;
+  color: var(--primary-color);
+}
+.contactCard a {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+
+  color: var(--text-color);
+}
+.contactCard ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.contactCard li a {
+  padding: 5px;
+}
+.contactCard li a:hover {
+  color: var(--emphasis-color);
+}

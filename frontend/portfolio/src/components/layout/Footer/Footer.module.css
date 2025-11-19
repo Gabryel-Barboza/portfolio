@@ -1,0 +1,55 @@
+.footer {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--secondary-color);
+  padding: 15px 10px;
+  text-align: center;
+}
+.footer a {
+  color: #fff;
+}
+.footer a:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+.copy {
+  margin: 10px 0;
+  width: 100%;
+}
+
+.signature {
+  margin: 0 5px;
+  font-family: Tangerine, cursive;
+  font-size: 1.5em;
+  font-weight: 900;
+}
+
+.logo {
+  margin: 0 5px;
+  width: 1.3em;
+  vertical-align: middle;
+  animation: spin 5s ease-in-out infinite forwards;
+}
+
+.links {
+  width: 100%;
+  color: var(--text-color);
+}
+.links a {
+  position: relative;
+}
+.links a::after {
+  content: '⤤';
+  position: absolute;
+  top: -10px;
+}
+
+@keyframes spin {
+  100% {
+    rotate: 360deg;
+  }
+}

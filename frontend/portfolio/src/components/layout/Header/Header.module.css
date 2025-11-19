@@ -1,0 +1,94 @@
+.header {
+  width: 100%;
+  padding-top: 80px;
+  padding-left: 10px;
+  text-align: left;
+}
+.header h1 {
+  margin: 15px 15px;
+  font-size: 1.6em;
+  text-align: left;
+  color: #fff;
+  transform: translateX(-50vw);
+  animation: slide 0.7s ease-in-out 0.2s forwards;
+}
+.header h2 {
+  margin: 10px 0;
+  font-size: 1em;
+  font-weight: 800;
+  color: var(--text-color);
+  transform: translateX(50vw);
+  animation: slide 0.7s ease-in-out 0.2s forwards;
+}
+.header p {
+  color: var(--text-color);
+}
+.header button {
+  cursor: pointer;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 1em;
+  margin: 20px 0 20px 30px;
+  width: fit-content;
+  padding: 0.8em 1.3em;
+  background: var(--link-button-color);
+  font-weight: 800;
+  color: black;
+}
+.header button:hover {
+  filter: brightness(1.2);
+  transform: scale(1.2);
+}
+.header button:hover svg {
+  transform: translate(5px, -5px);
+}
+
+.titleText {
+  display: block;
+  font-size: 0.8em;
+  color: var(--emphasis-color);
+}
+
+.mainText {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  width: 100%;
+  padding: 0 10px;
+}
+.mainText > div {
+  max-width: 400px;
+  transform: translateX(50vw);
+  animation: slide 0.7s ease-in-out 0.2s forwards;
+}
+
+.animatedText {
+  font-size: 8em;
+  line-height: 2;
+}
+.animatedText:hover {
+  color: var(--c-aquamarine-600);
+  text-shadow: 0 0 8px var(--c-aquamarine-600);
+  animation: pulse-shadow 5s ease-out infinite alternate;
+}
+.animatedText:hover + div p {
+  color: var(--emphasis-color);
+  text-shadow: 1px 1px 0 var(--emphasis-color);
+}
+
+@keyframes pulse-shadow {
+  to {
+    text-shadow: 5px 5px 16px var(--c-aquamarine-600);
+  }
+}
+
+@keyframes slide {
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media screen and (min-width: 600px) {
+  button {
+    font-size: 1em;
+  }
+}

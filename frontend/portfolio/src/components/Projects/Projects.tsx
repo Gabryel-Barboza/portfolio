@@ -18,7 +18,7 @@ const Projects = forwardRef<HTMLDivElement, Props>(
       : '';
 
     return (
-      <section id="projects" ref={ref}>
+      <section id="projects" className={styles.projects} ref={ref}>
         <h2 className={titleClass} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <span>{<TitleIcon />}</span> {titleText}
         </h2>

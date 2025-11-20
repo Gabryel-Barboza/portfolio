@@ -1,8 +1,8 @@
 .header {
   width: 100%;
-  padding-top: 80px;
-  padding-left: 10px;
+  padding: 80px 0 20px 10px;
   text-align: left;
+  background-color: var(--header-color);
 }
 .header h1 {
   margin: 15px 15px;
@@ -63,7 +63,6 @@
 
 .animatedText {
   font-size: 8em;
-  line-height: 2;
 }
 .animatedText:hover {
   color: var(--c-aquamarine-600);
@@ -90,5 +89,34 @@
 @media screen and (min-width: 600px) {
   button {
     font-size: 1em;
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .header {
+    padding: 120px 0 60px 20px;
+  }
+  .header h1 {
+    font-size: 2em;
+  }
+
+  .mainText {
+    padding-left: 100px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .header h1 {
+    font-size: 2.5em;
+  }
+
+  .mainText {
+    padding-left: 150px;
+    font-size: 1.2em;
+    margin: 1.2em 0;
+  }
+
+  .header button {
+    font-size: 1.1em;
   }
 }

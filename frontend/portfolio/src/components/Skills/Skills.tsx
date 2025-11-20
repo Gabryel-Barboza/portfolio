@@ -16,7 +16,7 @@ const Skills = ({ pageStyles, titleIcon: TitleIcon, titleText }: Props) => {
     : '';
 
   return (
-    <section id="skills">
+    <section id="skills" className={styles.skills}>
       <h2 className={titleClass} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <span>{<TitleIcon />}</span>
         {titleText}

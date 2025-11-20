@@ -1,10 +1,16 @@
 .main {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 3em;
-  max-width: 800px;
-  margin: 20px 0 100px;
+  width: 100%;
+  max-width: 1800px;
+  margin: 30px auto 100px;
   padding: 10px 20px;
+}
+.main section {
+  width: 100%;
+  max-width: 800px;
 }
 .main h2 {
   display: flex;
@@ -27,7 +33,7 @@
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
   border: 1px solid var(--section-border-color);
   border-radius: 2px;
-  margin: 15px 0;
+  margin: 30px 0;
   padding: 10px;
   background-color: var(--secondary-color);
   color: var(--text-color);
@@ -73,5 +79,23 @@
   }
   100% {
     border-right-color: transparent;
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .main {
+    padding: 10px 40px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .main {
+    align-items: unset;
+  }
+  .main h2 {
+    font-size: 2em;
+  }
+  .main section:last-of-type {
+    align-self: center;
   }
 }

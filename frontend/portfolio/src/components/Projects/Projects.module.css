@@ -38,3 +38,15 @@
 .projectCard button svg {
   margin: 0 5px;
 }
+
+@media screen and (min-width: 1200px) {
+  .projects {
+    max-width: unset !important;
+  }
+  .projects * {
+    max-width: 800px;
+  }
+  .projects div:nth-of-type(even) {
+    margin-left: 50%;
+  }
+}

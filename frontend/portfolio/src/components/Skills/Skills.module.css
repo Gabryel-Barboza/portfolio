@@ -19,3 +19,20 @@
   background-color: var(--tag-color);
   color: var(--emphasis-color);
 }
+
+@media screen and (min-width: 720px) {
+  .skills {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 20px;
+  }
+  .skills h2 {
+    width: 100%;
+  }
+
+  .skills .skillCard {
+    width: 45%;
+    margin: 0;
+  }
+}

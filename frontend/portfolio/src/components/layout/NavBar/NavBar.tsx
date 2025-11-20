@@ -18,6 +18,7 @@ const NavBar = ({ sections, activeSection }: Props) => {
 
   const isMobile = windowSize.width < 720;
   const navClass = clsx({
+    [styles.nav]: !isMobile,
     [styles.mobileNav]: isMobile,
     [styles.navOpen]: isMobile && mobileMenuVisible,
   });

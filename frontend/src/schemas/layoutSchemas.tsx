@@ -7,6 +7,7 @@ interface SectionSchema {
 }
 
 interface SectionTitleSchema {
+  id: string;
   pageStyles?: CSSModuleClasses;
   titleIcon: IconType;
   titleText: string;

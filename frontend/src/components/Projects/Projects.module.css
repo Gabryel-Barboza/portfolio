@@ -37,6 +37,10 @@
 }
 .projectCard button svg {
   margin: 0 5px;
+  vertical-align: middle;
+}
+.projectCard a {
+  color: #fff;
 }
 
 @media screen and (min-width: 1200px) {

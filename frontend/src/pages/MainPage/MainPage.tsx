@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   BsBriefcaseFill,
   BsCodeSlash,
@@ -27,46 +27,32 @@ const SECTIONS: SectionSchema[] = [
 ];
 
 const MainPage = () => {
-  const projects = useRef<HTMLDivElement>(null);
-  const [activeSection, setActiveSection] = useState(SECTIONS[0]);
+  const projectSection = useRef<HTMLDivElement>(null);
+  const [mainVisibility, setMainVisibility] = useState(false);
+  const [scrollToProjects, setScrollToProjects] = useState(false);
+
+  const toggleMainVisibility = () => {
+    setMainVisibility(!mainVisibility);
+    setScrollToProjects(false);
+  };
+
+  const handleViewProjectsClick = () => {
+    if (!mainVisibility) {
+      toggleMainVisibility();
+      setScrollToProjects(true);
+    }
+
+    projectSection.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   useEffect(() => {
-    let currentActiveSection = SECTIONS[0];
-    // Criando efeito para scroll da página, um mecanismo scroll spy
-    // No scroll, verifica qual a section atual e atualiza o estilo
-    const handleScroll = () => {
-      const offset = 150;
-
-      // Para cada section disponível, se essa section estiver visível na tela (posicionada entre o offset e o fim da tela)
-      SECTIONS.forEach((section) => {
-        const element = document.getElementById(section.id);
-
-        if (element) {
-          const rect = element.getBoundingClientRect();
-
-          // rect é um objeto com as propriedades de top, left, ... que refletem a distância do elemento em relação ao viewport. Seus valores indicam a distância do elemento em relação ao topo da viewport (top, bottom) ou as laterais (left, right).
-          // Se top for próximo de 0 bottom maior que offset, então o elemento está visível e no topo da tela, logo é a section ativa.
-          if (rect.top <= offset && rect.bottom > offset) {
-            currentActiveSection = section;
-          }
-        }
-      });
-
-      if (currentActiveSection.id !== activeSection.id) setActiveSection(currentActiveSection);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [activeSection]);
-
-  const handleViewProjectsClick = () =>
-    projects.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (mainVisibility && scrollToProjects)
+      projectSection.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [mainVisibility, scrollToProjects]);
 
   return (
     <>
-      <NavBar sections={SECTIONS} activeSection={activeSection} />
+      <NavBar sections={SECTIONS} mainVisibility={mainVisibility} onToggleMain={toggleMainVisibility} />
 
       <Header
         titleText="Olá, eu sou"
@@ -75,24 +61,39 @@ const MainPage = () => {
         text="Sou um desenvolvedor apaixonado por construir soluções web escaláveis e intuitivas.
                 Especializado em React e TypeScript para criar interfaces interativas e Python para serviços ou automações."
         buttonText="Ver meus projetos"
+        mainVisibility={mainVisibility}
         onBtnClick={handleViewProjectsClick}
+        onMainToggle={toggleMainVisibility}
       />
-      <main className={styles.main}>
-        <AboutMe
-          pageStyles={styles}
-          titleIcon={BsFileEarmarkPerson}
-          titleText="Sobre Mim"
-          sectionText="Lorem ipsum dolor sit amet consectetur adipisicing elit. Est illum eligendi quam amet aliquam provident id, expedita vitae doloribus voluptates, tenetur, dignissimos non eveniet repudiandae eaque adipisci magni! Consequatur, ipsam!"
-        />
-        <Projects
-          pageStyles={styles}
-          titleIcon={BsBriefcaseFill}
-          titleText="Projetos"
-          ref={projects}
-        />
-        <Skills pageStyles={styles} titleIcon={BsCodeSlash} titleText="Habilidades" />
-        <Contacts pageStyles={styles} titleIcon={MdEmail} titleText="Contatos" />
-      </main>
+      {mainVisibility && (
+        <main className={styles.main}>
+          <AboutMe
+            id={SECTIONS[1].id}
+            pageStyles={styles}
+            titleIcon={BsFileEarmarkPerson}
+            titleText="Sobre Mim"
+          />
+          <Projects
+            id={SECTIONS[2].id}
+            pageStyles={styles}
+            titleIcon={BsBriefcaseFill}
+            titleText="Projetos"
+            ref={projectSection}
+          />
+          <Skills
+            id={SECTIONS[3].id}
+            pageStyles={styles}
+            titleIcon={BsCodeSlash}
+            titleText="Habilidades"
+          />
+          <Contacts
+            id={SECTIONS[4].id}
+            pageStyles={styles}
+            titleIcon={MdEmail}
+            titleText="Contatos"
+          />
+        </main>
+      )}
     </>
   );
 };

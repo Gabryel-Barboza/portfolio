@@ -1,13 +1,14 @@
-import { TbBrandReact } from 'react-icons/tb';
-
 import type { SectionTitleSchema } from '../../schemas/layoutSchemas';
 import styles from './Skills.module.css';
 import useHovering from '../../hooks/useHovering';
+import useServerContext from '../../context/useServerContext';
+import SkillCard from './SkillCard';
 
 type Props = SectionTitleSchema;
 
-const Skills = ({ pageStyles, titleIcon: TitleIcon, titleText }: Props) => {
+const Skills = ({ id, pageStyles, titleIcon: TitleIcon, titleText }: Props) => {
   const { isHovering, handleMouseEnter, handleMouseLeave } = useHovering();
+  const { resume } = useServerContext();
 
   const titleClass = pageStyles
     ? isHovering
@@ -16,29 +17,17 @@ const Skills = ({ pageStyles, titleIcon: TitleIcon, titleText }: Props) => {
     : '';
 
   return (
-    <section id="skills" className={styles.skills}>
-      <h2 className={titleClass} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        <span>{<TitleIcon />}</span>
-        {titleText}
-      </h2>
-      <div className={styles.skillCard}>
-        <p>
-          <TbBrandReact />
-          React
-        </p>
-        <span>Avançado</span>
-      </div>
-      <div className={styles.skillCard}>
-        <p>
-          <></>Python
-        </p>
-        <span>Avançado</span>
-      </div>
-      <div className={styles.skillCard}>
-        <p>TypeScript</p>
-        <span>Intermediário</span>
-      </div>
-    </section>
+    resume && (
+      <section id={id} className={styles.skills}>
+        <h2 className={titleClass} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+          <span>{<TitleIcon />}</span>
+          {titleText}
+        </h2>
+        {resume.stack.map((tech, idx) => (
+          <SkillCard key={idx} tech={tech} />
+        ))}
+      </section>
+    )
   );
 };
 

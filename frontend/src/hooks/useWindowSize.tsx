@@ -13,7 +13,7 @@ const useWindowSize = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      clearInterval(timeoutId.current);
+      clearTimeout(timeoutId.current);
 
       timeoutId.current = setTimeout(() => {
         setWindowSize(getWindowSize());

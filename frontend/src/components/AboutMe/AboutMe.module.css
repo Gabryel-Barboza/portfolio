@@ -1,3 +1,17 @@
-.aboutMe {
+.aboutMeCard {
+  position: relative;
   text-align: justify;
+  text-indent: 0.5em;
+}
+
+.animatedText {
+  color: var(--emphasis-color);
+  font-weight: 900;
+  font-size: 1.1em;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(370deg);
+  }
 }

@@ -1,4 +1,5 @@
 .header {
+  position: relative;
   width: 100%;
   padding: 80px 0 20px 10px;
   text-align: left;
@@ -14,8 +15,10 @@
 }
 .header h2 {
   margin: 10px 0;
+  padding: 10px;
   font-size: 1em;
   font-weight: 800;
+  background-color: var(--primary-color);
   color: var(--text-color);
   transform: translateX(50vw);
   animation: slide 0.7s ease-in-out 0.2s forwards;
@@ -34,12 +37,30 @@
   font-weight: 800;
   color: black;
 }
-.header button:hover {
+.header button:not(.toggleButton):hover {
   filter: brightness(1.2);
   transform: scale(1.2);
 }
 .header button:hover svg {
   transform: translate(5px, -5px);
+}
+.header .toggleButton {
+  position: absolute;
+  left: 45%;
+  top: 97%;
+  box-shadow: none;
+  border-radius: 45%;
+  margin: 0;
+  font-size: 0.8em;
+  transform: rotate(-90deg);
+  animation: ping 1s ease-in-out infinite alternate;
+}
+.header .toggleButton.toggled {
+  transform: rotate(90deg);
+  animation: none;
+}
+.header .toggleButton:hover {
+  filter: brightness(1.2);
 }
 
 .titleText {
@@ -86,6 +107,12 @@
   }
 }
 
+@keyframes ping {
+  to {
+    opacity: 0.7;
+  }
+}
+
 @media screen and (min-width: 600px) {
   button {
     font-size: 1em;
@@ -98,6 +125,9 @@
   }
   .header h1 {
     font-size: 2em;
+  }
+  .header .toggleButton {
+    left: 50%;
   }
 
   .mainText {

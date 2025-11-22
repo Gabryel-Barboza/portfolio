@@ -41,7 +41,9 @@ const AboutMe = ({ id, pageStyles, titleIcon: TitleIcon, titleText }: Props) => 
           <p>
             {words.map((word, index) =>
               index === animatedIndex ? (
-                <span className={styles.animatedText}>{word} </span>
+                <span key={index} className={styles.animatedText}>
+                  {word}{' '}
+                </span>
               ) : (
                 `${word} `
               )

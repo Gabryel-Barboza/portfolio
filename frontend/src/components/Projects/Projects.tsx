@@ -1,7 +1,8 @@
-import { forwardRef } from 'react';
-import { BsGithub, BsArrowUpRight } from 'react-icons/bs';
+import { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
+import { BsGithub, BsArrowUpRight, BsArrowUp, BsArrowDown } from 'react-icons/bs';
 
 import type { SectionTitleSchema } from '../../schemas/layoutSchemas';
+import type { ProjectSchema } from '../../schemas/dataSchemas';
 
 import styles from './Projects.module.css';
 import useHovering from '../../hooks/useHovering';
@@ -12,7 +13,11 @@ type Props = SectionTitleSchema;
 const Projects = forwardRef<HTMLDivElement, Props>(
   ({ id, pageStyles, titleIcon: TitleIcon, titleText }, ref) => {
     const { isHovering, handleMouseEnter, handleMouseLeave } = useHovering();
-    const { projects } = useServerContext();
+    const { getSortedProjects } = useServerContext();
+
+    const projectsLoadButton = useRef(true);
+    const [projectsLimit, setProjectsLimit] = useState(5);
+    const [projects, setProjects] = useState<ProjectSchema[] | undefined>(undefined);
 
     const titleClass = pageStyles
       ? isHovering
@@ -20,17 +25,50 @@ const Projects = forwardRef<HTMLDivElement, Props>(
         : pageStyles.titleMouseLeave
       : '';
 
+    useEffect(() => {
+      setProjects(getSortedProjects({ orient: 'desc' }));
+    }, [getSortedProjects]);
+
+    const sortedProjects = useMemo(
+      () => (projects ? projects.slice(0, projectsLimit) : []),
+      [projects, projectsLimit]
+    );
+
+    const handleProjectSort = (orient?: 'asc' | 'desc') => {
+      setProjects(getSortedProjects({ orient: orient }));
+    };
+
     return (
-      projects && (
+      sortedProjects && (
         <section id={id} className={styles.projects} ref={ref}>
           <h2
             className={titleClass}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <span>{<TitleIcon />}</span> {titleText}
+            <div>
+              <span>{<TitleIcon />}</span> {titleText}
+            </div>
+            <div>
+              <button
+                className={styles.sortBtn}
+                type="button"
+                onClick={() => handleProjectSort('asc')}
+              >
+                <BsArrowUp />
+                ASC
+              </button>
+              <button
+                className={styles.sortBtn}
+                type="button"
+                onClick={() => handleProjectSort('desc')}
+              >
+                <BsArrowDown />
+                DESC
+              </button>
+            </div>
           </h2>
-          {projects.map((project, idx) => (
+          {sortedProjects.map((project, idx) => (
             <div key={idx} className={styles.projectCard}>
               <h3>{project.name}</h3>
               <p>{project.description}</p>
@@ -55,6 +93,15 @@ const Projects = forwardRef<HTMLDivElement, Props>(
               </div>
             </div>
           ))}
+          {projectsLoadButton.current && (
+            <button
+              className={styles.projectLoadBtn}
+              type="button"
+              onClick={() => setProjectsLimit((prevLimit) => prevLimit + 5)}
+            >
+              Ver mais
+            </button>
+          )}
         </section>
       )
     );

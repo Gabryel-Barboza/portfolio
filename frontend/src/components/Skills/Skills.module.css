@@ -11,8 +11,8 @@
   color: #fff;
 }
 .skillCard svg {
-  color: var(--emphasis-color);
   font-size: 1.2em;
+  color: var(--emphasis-color);
 }
 .skillCard span {
   border-radius: 20px;

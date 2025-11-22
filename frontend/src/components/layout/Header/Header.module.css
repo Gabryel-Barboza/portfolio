@@ -5,6 +5,37 @@
   text-align: left;
   background-color: var(--header-color);
 }
+.header::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  width: 75%;
+  max-width: 400px;
+  height: 75%;
+  max-height: 400px;
+  background: var(--profilePicture) no-repeat center/100% fixed;
+  pointer-events: none;
+}
+.header::after {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  width: 75%;
+  max-width: 400px;
+  height: 75%;
+  max-height: 400px;
+  background: var(--header-color);
+  opacity: 0.93;
+  mix-blend-mode: multiply;
+  z-index: 1;
+  pointer-events: none;
+}
+.header * {
+  position: relative;
+  z-index: 5;
+}
 .header h1 {
   margin: 15px 15px;
   font-size: 1.6em;
@@ -37,30 +68,12 @@
   font-weight: 800;
   color: black;
 }
-.header button:not(.toggleButton):hover {
+.header button:not(.toggleElement button):hover {
   filter: brightness(1.2);
   transform: scale(1.2);
 }
 .header button:hover svg {
   transform: translate(5px, -5px);
-}
-.header .toggleButton {
-  position: absolute;
-  left: 45%;
-  top: 97%;
-  box-shadow: none;
-  border-radius: 45%;
-  margin: 0;
-  font-size: 0.8em;
-  transform: rotate(-90deg);
-  animation: ping 1s ease-in-out infinite alternate;
-}
-.header .toggleButton.toggled {
-  transform: rotate(90deg);
-  animation: none;
-}
-.header .toggleButton:hover {
-  filter: brightness(1.2);
 }
 
 .titleText {
@@ -95,6 +108,30 @@
   text-shadow: 1px 1px 0 var(--emphasis-color);
 }
 
+.toggleElement {
+  position: absolute;
+  top: 96%;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+.toggleElement button {
+  box-shadow: none;
+  border-radius: 45%;
+  margin: 0;
+  font-size: 0.8em;
+  transform: rotate(-90deg);
+  animation: ping 1.5s ease-in-out infinite alternate;
+}
+.toggleElement.toggled button {
+  transform: rotate(90deg);
+  animation: none;
+}
+.toggleElement button:hover {
+  filter: brightness(1.2);
+}
+
 @keyframes pulse-shadow {
   to {
     text-shadow: 5px 5px 16px var(--c-aquamarine-600);
@@ -109,13 +146,27 @@
 
 @keyframes ping {
   to {
-    opacity: 0.7;
+    color: #fff;
+    background-color: var(--primary-color);
   }
 }
 
 @media screen and (min-width: 600px) {
   button {
     font-size: 1em;
+  }
+
+  .header::before {
+    top: 15%;
+    left: 50%;
+    width: 75%;
+    height: 75%;
+  }
+  .header::after {
+    top: 15%;
+    left: 50%;
+    width: 75%;
+    height: 75%;
   }
 }
 
@@ -126,12 +177,13 @@
   .header h1 {
     font-size: 2em;
   }
-  .header .toggleButton {
-    left: 50%;
-  }
 
   .mainText {
     padding-left: 100px;
+  }
+
+  .toggleElement button {
+    font-size: 0.8em;
   }
 }
 

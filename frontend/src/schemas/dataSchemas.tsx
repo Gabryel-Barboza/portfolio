@@ -54,6 +54,11 @@ interface ResumeSchema {
   education: EducationSchema;
 }
 
+interface getSortedProjectsConf {
+  sortFn?: (a: ProjectSchema, b: ProjectSchema) => number;
+  orient?: 'asc' | 'desc';
+}
+
 export type {
   ContactType,
   ContactsSchema,
@@ -64,4 +69,5 @@ export type {
   ProjectSchema,
   ResumeSchema,
   TechSchema,
+  getSortedProjectsConf,
 };

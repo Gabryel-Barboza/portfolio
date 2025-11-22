@@ -14,7 +14,6 @@
 }
 .main h2 {
   display: flex;
-  align-items: flex-start;
   gap: 10px;
   border: 1px solid transparent;
   border-right: 1px solid var(--border-color);
@@ -26,8 +25,8 @@
   color: var(--emphasis-color);
 }
 .main h2 span {
-  line-height: 1.8;
   color: var(--emphasis-color);
+  line-height: 1.8;
 }
 .main h2 ~ div {
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);

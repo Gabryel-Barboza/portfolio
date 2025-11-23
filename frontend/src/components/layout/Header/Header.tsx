@@ -32,8 +32,8 @@ const Header = ({
   const toggleButtonClass = clsx(styles.toggleElement, { [styles.toggled]: mainVisibility });
 
   useEffect(() => {
-    if (resume && header.current) {
-      const imageUrl = resume.profilePicture;
+    if (header.current) {
+      const imageUrl = resume?.profilePicture ?? 'https://placehold.net/600x800.png';
       header.current.style.setProperty('--profilePicture', `url('${imageUrl}')`);
     }
   }, [resume]);

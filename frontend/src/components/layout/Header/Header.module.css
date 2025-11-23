@@ -9,7 +9,7 @@
   content: '';
   position: absolute;
   top: 15%;
-  left: 15%;
+  left: 1%;
   width: 75%;
   max-width: 400px;
   height: 75%;
@@ -21,7 +21,7 @@
   content: '';
   position: absolute;
   top: 15%;
-  left: 15%;
+  left: 1%;
   width: 75%;
   max-width: 400px;
   height: 75%;
@@ -158,15 +158,16 @@
 
   .header::before {
     top: 15%;
-    left: 50%;
-    width: 75%;
-    height: 75%;
+    left: 70%;
+    max-height: none;
+    background-position: right;
+    background-size: 50%;
   }
   .header::after {
     top: 15%;
-    left: 50%;
-    width: 75%;
-    height: 75%;
+    left: 70%;
+    opacity: 0.93;
+    max-height: none;
   }
 }
 

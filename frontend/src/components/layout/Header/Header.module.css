@@ -27,7 +27,7 @@
   height: 75%;
   max-height: 400px;
   background: var(--header-color);
-  opacity: 0.93;
+  opacity: 0.85;
   mix-blend-mode: multiply;
   z-index: 1;
   pointer-events: none;

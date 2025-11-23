@@ -34,10 +34,7 @@ const Header = ({
   useEffect(() => {
     if (resume && header.current) {
       const imageUrl = resume.profilePicture;
-      header.current.style.setProperty(
-        '--profilePicture',
-        `url('${imageUrl}')`
-      );
+      header.current.style.setProperty('--profilePicture', `url('${imageUrl}')`);
     }
   }, [resume]);
 

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import type { ProjectSchema, getSortedProjectsConf } from '../schemas/dataSchemas';
 import useApiData from '../hooks/useApiData';
@@ -7,19 +7,20 @@ import { ServerContext } from './ServerContext';
 import { sortArrayByDate } from '../utils/arrayUtils';
 
 const ServerProvider = ({ children }: { children: ReactNode }) => {
-  const { projects, resume, getResume, getProjects, isLoading, setIsLoading } = useApiData();
+  const { projects, resume, getResume, getProjects, isLoadingResume, isLoadingProjects } =
+    useApiData();
+  const [isLoading, setIsLoading] = useState(true);
 
   // Inicializar contexto
   useEffect(() => {
-    setIsLoading(true);
+    if (!resume) getResume();
+    if (!projects) getProjects();
+  }, [getResume, getProjects, projects, resume]);
 
-    try {
-      getResume();
-      getProjects();
-    } catch (err) {
-      console.log(err);
-    }
-  }, [getResume, getProjects, setIsLoading]);
+  useEffect(() => {
+    if (isLoadingResume || isLoadingProjects) setIsLoading(true);
+    else setIsLoading(false);
+  }, [isLoadingProjects, isLoadingResume]);
 
   const getSortedProjects = useCallback(
     ({ sortFn, orient }: getSortedProjectsConf) => {

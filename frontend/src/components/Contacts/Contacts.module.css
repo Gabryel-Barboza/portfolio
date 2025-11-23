@@ -5,6 +5,8 @@
 }
 .contactCard p {
   text-align: justify;
+  margin: 10px 0;
+  padding: 0 5px;
 }
 .contactCard button {
   cursor: pointer;

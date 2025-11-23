@@ -17,17 +17,19 @@ const Skills = ({ id, pageStyles, titleIcon: TitleIcon, titleText }: Props) => {
     : '';
 
   return (
-    resume && (
-      <section id={id} className={styles.skills}>
-        <h2 className={titleClass} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-          <span>{<TitleIcon />}</span>
-          {titleText}
-        </h2>
-        {resume.stack.map((tech, idx) => (
-          <SkillCard key={idx} tech={tech} />
-        ))}
-      </section>
-    )
+    <section id={id} className={styles.skills}>
+      <h2 className={titleClass} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        {resume ? (
+          <>
+            <span>{<TitleIcon />}</span>
+            {titleText}
+          </>
+        ) : (
+          <span>Não foi possível recuperar as habilidades do repositório</span>
+        )}
+      </h2>
+      {resume && resume.stack.map((tech, idx) => <SkillCard key={idx} tech={tech} />)}
+    </section>
   );
 };
 

@@ -15,6 +15,7 @@ import {
 import type { TechSchema } from '../../schemas/dataSchemas';
 
 import styles from './Skills.module.css';
+import clsx from 'clsx';
 
 interface Props {
   tech: TechSchema;
@@ -35,6 +36,10 @@ const SkillCard = ({ tech }: Props) => {
   ]);
 
   const TechIcon = iconMap.get(tech.name.toLowerCase());
+  const skillDescriptionClass = clsx(styles.skillDescription, {
+    [styles.descriptionToggled]: descriptionVisibility,
+  });
+
   const toggleDescriptionVisibility = () => setDescriptionVisibility(!descriptionVisibility);
 
   return (
@@ -45,7 +50,7 @@ const SkillCard = ({ tech }: Props) => {
         </p>
         <span>{tech.level}</span>
       </div>
-      {descriptionVisibility && <p className={styles.skillDescription}>{tech.description}</p>}
+      <p className={skillDescriptionClass}>{tech.description}</p>
     </>
   );
 };

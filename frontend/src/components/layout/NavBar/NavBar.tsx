@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-import { useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { MdMenu } from 'react-icons/md';
 
 import type { SectionSchema } from '../../../schemas/layoutSchemas';
@@ -11,31 +11,55 @@ import useScrollSpy from '../../../hooks/useScrollSpy';
 
 interface Props {
   sections: SectionSchema[];
+  pageStyles: CSSModuleClasses;
   mainVisibility: boolean;
   onToggleMain: () => void;
 }
 
-const NavBar = ({ sections, mainVisibility, onToggleMain }: Props) => {
+const NavBar = ({ sections, pageStyles, mainVisibility, onToggleMain }: Props) => {
   const { windowSize } = useWindowSize();
-  const { activeSection } = useScrollSpy(sections);
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
-
   const isMobile = windowSize.width < 720;
+  const [idToScroll, setIdToScroll] = useState<string | undefined>(undefined);
+
+  const options = useMemo(
+    () => ({
+      topOffset: 250,
+      classStyle: { enter: pageStyles.titleMouseEnter, leave: pageStyles.titleMouseLeave },
+      childSelector: 'h2',
+    }),
+    [pageStyles]
+  );
+
+  const { activeSection } = useScrollSpy(sections, options);
+
   const navClass = clsx({
     [styles.nav]: !isMobile,
     [styles.mobileNav]: isMobile,
     [styles.navOpen]: isMobile && mobileMenuVisible,
   });
 
-  const toggleMenuVisibility = () => setMobileMenuVisible(!mobileMenuVisible);
+  const toggleMenuVisibility = useCallback(
+    () => setMobileMenuVisible(!mobileMenuVisible),
+    [mobileMenuVisible]
+  );
 
-  const handleItemClick = (id: string) => {
-    if (isMobile) toggleMenuVisibility();
-    if (!mainVisibility) onToggleMain();
+  const handleItemClick = useCallback(
+    (id: string) => {
+      if (isMobile) toggleMenuVisibility();
+      if (!mainVisibility) onToggleMain();
 
-    const element = document.getElementById(id);
-    element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
+      setIdToScroll(id);
+    },
+    [isMobile, mainVisibility, toggleMenuVisibility, onToggleMain]
+  );
+
+  useEffect(() => {
+    if (idToScroll) {
+      const element = document.getElementById(idToScroll);
+      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [idToScroll]);
 
   return (
     <>
@@ -55,12 +79,18 @@ const NavBar = ({ sections, mainVisibility, onToggleMain }: Props) => {
           <div className={styles.items}>
             <ul>
               {sections.map((section, idx) => {
-                const isActiveSection = section.id === activeSection.id;
+                const isActiveSection = activeSection?.id === section.id;
                 const liClass = isActiveSection ? styles.activeSection : '';
 
                 return (
-                  <li key={idx} className={liClass} onClick={() => handleItemClick(section.id)}>
-                    <a href={`#${section.id}`}>
+                  <li key={idx} className={liClass}>
+                    <a
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleItemClick(section.id);
+                      }}
+                      href={`#${section.id}`}
+                    >
                       {<section.icon />}
                       {section.text}
                     </a>

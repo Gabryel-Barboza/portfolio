@@ -31,12 +31,18 @@ const AboutMe = ({ id, pageStyles, titleIcon: TitleIcon, titleText }: Props) => 
   }, [words]);
 
   return (
-    resume && (
-      <section id={id} className={styles.aboutMe}>
-        <h2 className={titleClass} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-          <span>{<TitleIcon />}</span>
-          {titleText}
-        </h2>
+    <section id={id} className={styles.aboutMe}>
+      <h2 className={titleClass} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        {resume ? (
+          <>
+            <span>{<TitleIcon />}</span>
+            {titleText}
+          </>
+        ) : (
+          <span>Não foi possível recuperar a biografia do repositório</span>
+        )}
+      </h2>
+      {resume && (
         <div className={styles.aboutMeCard}>
           <p>
             {words.map((word, index) =>
@@ -50,8 +56,8 @@ const AboutMe = ({ id, pageStyles, titleIcon: TitleIcon, titleText }: Props) => 
             )}
           </p>
         </div>
-      </section>
-    )
+      )}
+    </section>
   );
 };
 

@@ -19,12 +19,18 @@ const Contacts = ({ id, pageStyles, titleIcon: TitleIcon, titleText }: Props) =>
     : '';
 
   return (
-    resume && (
-      <section id={id}>
-        <h2 className={titleClass} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-          <span>{<TitleIcon />}</span>
-          {titleText}
-        </h2>
+    <section id={id} className={styles.contacts}>
+      <h2 className={titleClass} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        {resume ? (
+          <>
+            <span>{<TitleIcon />}</span>
+            {titleText}
+          </>
+        ) : (
+          <span>Não foi possível recuperar os contatos do repositório</span>
+        )}
+      </h2>
+      {resume && (
         <div className={styles.contactCard}>
           <p>
             Quer entrar em contato? Utilize algum dos canais abaixo, onde geralmente estou ativo e
@@ -53,8 +59,8 @@ const Contacts = ({ id, pageStyles, titleIcon: TitleIcon, titleText }: Props) =>
             </ul>
           </div>
         </div>
-      </section>
-    )
+      )}
+    </section>
   );
 };
 

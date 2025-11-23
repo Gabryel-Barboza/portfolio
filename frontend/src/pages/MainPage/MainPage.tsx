@@ -17,6 +17,7 @@ import Projects from '../../components/Projects/Projects';
 import Skills from '../../components/Skills/Skills';
 import Contacts from '../../components/Contacts/Contacts';
 import NavBar from '../../components/layout/NavBar/NavBar';
+import useServerContext from '../../context/useServerContext';
 
 const SECTIONS: SectionSchema[] = [
   { id: 'root', text: 'Início', icon: BsFillHouseDoorFill },
@@ -30,6 +31,7 @@ const MainPage = () => {
   const projectSection = useRef<HTMLDivElement>(null);
   const [mainVisibility, setMainVisibility] = useState(false);
   const [scrollToProjects, setScrollToProjects] = useState(false);
+  const { isLoading } = useServerContext();
 
   const toggleMainVisibility = () => {
     setMainVisibility(!mainVisibility);
@@ -52,7 +54,12 @@ const MainPage = () => {
 
   return (
     <>
-      <NavBar sections={SECTIONS} mainVisibility={mainVisibility} onToggleMain={toggleMainVisibility} />
+      <NavBar
+        sections={SECTIONS}
+        pageStyles={styles}
+        mainVisibility={mainVisibility}
+        onToggleMain={toggleMainVisibility}
+      />
 
       <Header
         titleText="Olá, eu sou"
@@ -65,34 +72,42 @@ const MainPage = () => {
         onBtnClick={handleViewProjectsClick}
         onMainToggle={toggleMainVisibility}
       />
-      {mainVisibility && (
-        <main className={styles.main}>
-          <AboutMe
-            id={SECTIONS[1].id}
-            pageStyles={styles}
-            titleIcon={BsFileEarmarkPerson}
-            titleText="Sobre Mim"
-          />
-          <Projects
-            id={SECTIONS[2].id}
-            pageStyles={styles}
-            titleIcon={BsBriefcaseFill}
-            titleText="Projetos"
-            ref={projectSection}
-          />
-          <Skills
-            id={SECTIONS[3].id}
-            pageStyles={styles}
-            titleIcon={BsCodeSlash}
-            titleText="Habilidades"
-          />
-          <Contacts
-            id={SECTIONS[4].id}
-            pageStyles={styles}
-            titleIcon={MdEmail}
-            titleText="Contatos"
-          />
-        </main>
+      {isLoading ? (
+        <h2 className={styles.loading}>
+          Carregando<span>.</span>
+          <span>.</span>
+          <span>.</span>
+        </h2>
+      ) : (
+        mainVisibility && (
+          <main className={styles.main}>
+            <AboutMe
+              id={SECTIONS[1].id}
+              pageStyles={styles}
+              titleIcon={BsFileEarmarkPerson}
+              titleText="Sobre Mim"
+            />
+            <Projects
+              id={SECTIONS[2].id}
+              pageStyles={styles}
+              titleIcon={BsBriefcaseFill}
+              titleText="Projetos"
+              ref={projectSection}
+            />
+            <Skills
+              id={SECTIONS[3].id}
+              pageStyles={styles}
+              titleIcon={BsCodeSlash}
+              titleText="Habilidades"
+            />
+            <Contacts
+              id={SECTIONS[4].id}
+              pageStyles={styles}
+              titleIcon={MdEmail}
+              titleText="Contatos"
+            />
+          </main>
+        )
       )}
     </>
   );

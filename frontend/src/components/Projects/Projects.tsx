@@ -29,46 +29,47 @@ const Projects = forwardRef<HTMLDivElement, Props>(
       setProjects(getSortedProjects({ orient: 'desc' }));
     }, [getSortedProjects]);
 
-    const sortedProjects = useMemo(
-      () => (projects ? projects.slice(0, projectsLimit) : []),
-      [projects, projectsLimit]
-    );
+    const sortedProjects = useMemo(() => {
+      if (projects) {
+        if (projectsLimit >= projects.length) projectsLoadButton.current = false;
+
+        return projects.slice(0, projectsLimit);
+      }
+
+      return [];
+    }, [projects, projectsLimit]);
 
     const handleProjectSort = (orient?: 'asc' | 'desc') => {
       setProjects(getSortedProjects({ orient: orient }));
     };
 
     return (
-      sortedProjects && (
-        <section id={id} className={styles.projects} ref={ref}>
-          <h2
-            className={titleClass}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            <div>
-              <span>{<TitleIcon />}</span> {titleText}
-            </div>
-            <div>
-              <button
-                className={styles.sortBtn}
-                type="button"
-                onClick={() => handleProjectSort('asc')}
-              >
-                <BsArrowUp />
-                ASC
-              </button>
-              <button
-                className={styles.sortBtn}
-                type="button"
-                onClick={() => handleProjectSort('desc')}
-              >
-                <BsArrowDown />
-                DESC
-              </button>
-            </div>
-          </h2>
-          {sortedProjects.map((project, idx) => (
+      <section id={id} className={styles.projects} ref={ref}>
+        <h2 className={titleClass} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+          <div>
+            <span>{<TitleIcon />}</span> {titleText}
+          </div>
+          <div>
+            <button
+              className={styles.sortBtn}
+              type="button"
+              onClick={() => handleProjectSort('asc')}
+            >
+              <BsArrowUp />
+              ASC
+            </button>
+            <button
+              className={styles.sortBtn}
+              type="button"
+              onClick={() => handleProjectSort('desc')}
+            >
+              <BsArrowDown />
+              DESC
+            </button>
+          </div>
+        </h2>
+        {sortedProjects ? (
+          sortedProjects.map((project, idx) => (
             <div key={idx} className={styles.projectCard}>
               <h3>{project.name}</h3>
               <p>{project.description}</p>
@@ -92,18 +93,20 @@ const Projects = forwardRef<HTMLDivElement, Props>(
                 </button>
               </div>
             </div>
-          ))}
-          {projectsLoadButton.current && (
-            <button
-              className={styles.projectLoadBtn}
-              type="button"
-              onClick={() => setProjectsLimit((prevLimit) => prevLimit + 5)}
-            >
-              Ver mais
-            </button>
-          )}
-        </section>
-      )
+          ))
+        ) : (
+          <span>Não foi possível carregar os projetos disponíveis do repositório</span>
+        )}
+        {projectsLoadButton.current && (
+          <button
+            className={styles.projectLoadBtn}
+            type="button"
+            onClick={() => setProjectsLimit((prevLimit) => prevLimit + 5)}
+          >
+            Ver mais
+          </button>
+        )}
+      </section>
     );
   }
 );

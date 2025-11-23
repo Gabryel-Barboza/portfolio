@@ -1,3 +1,21 @@
+.loading {
+  margin: 40px auto;
+  color: var(--emphasis-color);
+}
+.loading span {
+  display: inline-block;
+  animation: loading 0.5s infinite alternate;
+}
+.loading span:nth-of-type(1) {
+  animation-delay: 0.5s;
+}
+.loading span:nth-of-type(2) {
+  animation-delay: 0.7s;
+}
+.loading span:nth-of-type(3) {
+  animation-delay: 0.9s;
+}
+
 .main {
   display: flex;
   flex-direction: column;
@@ -18,7 +36,7 @@
   border: 1px solid transparent;
   border-right: 1px solid var(--border-color);
   margin-bottom: 10px;
-  padding-left: 4px;
+  padding: 0 8px;
   font-weight: 900;
 }
 .main h2:hover {
@@ -49,6 +67,12 @@
 
 .titleMouseLeave {
   animation: border-progress-leave 1s ease-in-out 0.1s forwards;
+}
+
+@keyframes loading {
+  to {
+    transform: scale(2);
+  }
 }
 
 @keyframes border-progress-fill {

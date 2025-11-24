@@ -4,6 +4,7 @@ import { BsArrowUpRight } from 'react-icons/bs';
 import styles from './Header.module.css';
 import { useEffect, useRef } from 'react';
 import useServerContext from '../../../context/useServerContext';
+import useHovering from '../../../hooks/useHovering';
 
 interface Props {
   titleText: string;
@@ -27,8 +28,10 @@ const Header = ({
   onMainToggle,
 }: Props) => {
   const { resume } = useServerContext();
+  const { handleMouseEnter, handleMouseLeave, isHovering } = useHovering();
   const header = useRef<HTMLElement>(null);
 
+  const headerHoverClass = isHovering ? styles.bgMouseEnter : styles.bgMouseLeave;
   const toggleButtonClass = clsx(styles.toggleElement, { [styles.toggled]: mainVisibility });
 
   useEffect(() => {
@@ -40,7 +43,12 @@ const Header = ({
 
   return (
     <>
-      <header className={styles.header} ref={header}>
+      <header
+        className={`${styles.header} ${headerHoverClass}`}
+        ref={header}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <h1>
           <span className={styles.titleText}>{titleText}</span> {titleEmphasisText}
         </h1>

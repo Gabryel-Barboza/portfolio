@@ -19,8 +19,10 @@ interface Props {
 const NavBar = ({ sections, pageStyles, mainVisibility, onToggleMain }: Props) => {
   const { windowSize } = useWindowSize();
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
-  const isMobile = windowSize.width < 720;
   const [idToScroll, setIdToScroll] = useState<string | undefined>(undefined);
+  const isMobile = windowSize.width < 720;
+
+  console.log(windowSize.width);
 
   const options = useMemo(
     () => ({

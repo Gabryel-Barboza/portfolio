@@ -1,7 +1,9 @@
 #root {
+  position: relative;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  width: 100%;
 }
 
 main {

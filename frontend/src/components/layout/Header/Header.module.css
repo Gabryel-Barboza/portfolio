@@ -1,6 +1,10 @@
 .header {
+  --bg-opacity-mb: 0.85;
+  --bg-opacity-lg: 0.9;
+
   position: relative;
   width: 100%;
+  max-width: 100%;
   padding: 80px 0 20px 10px;
   text-align: left;
   background-color: var(--header-color);
@@ -9,9 +13,9 @@
   content: '';
   position: absolute;
   top: 15%;
-  left: 1%;
+  left: 5%;
   width: 75%;
-  max-width: 400px;
+  max-width: 260px;
   height: 75%;
   max-height: 400px;
   background: var(--profilePicture) no-repeat center/100% fixed;
@@ -21,13 +25,13 @@
   content: '';
   position: absolute;
   top: 15%;
-  left: 1%;
+  left: 5%;
   width: 75%;
-  max-width: 400px;
+  max-width: 260px;
   height: 75%;
   max-height: 400px;
   background: var(--header-color);
-  opacity: 0.85;
+  opacity: var(--bg-opacity-mb);
   mix-blend-mode: multiply;
   z-index: 1;
   pointer-events: none;
@@ -114,7 +118,7 @@
   left: 0;
   display: flex;
   justify-content: center;
-  width: 100vw;
+  width: 100%;
 }
 .toggleElement button {
   box-shadow: none;
@@ -151,6 +155,21 @@
   }
 }
 
+@keyframes bg-fade-in {
+  to {
+    opacity: 0.6;
+  }
+}
+
+@keyframes bg-fade-out {
+  from {
+    opacity: 0.65;
+  }
+  to {
+    opacity: var(--bg-opacity-lg);
+  }
+}
+
 @media screen and (min-width: 600px) {
   button {
     font-size: 1em;
@@ -158,16 +177,28 @@
 
   .header::before {
     top: 15%;
-    left: 70%;
+    left: auto;
+    right: 5%;
+    max-width: 400px;
     max-height: none;
     background-position: right;
     background-size: 50%;
   }
   .header::after {
     top: 15%;
-    left: 70%;
-    opacity: 0.93;
+    left: auto;
+    right: 5%;
+    opacity: var(--bg-opacity-lg);
+    max-width: 400px;
     max-height: none;
+  }
+
+  .bgMouseEnter::after {
+    animation: bg-fade-in 2s forwards;
+  }
+
+  .bgMouseLeave::after {
+    animation: bg-fade-out 2s forwards;
   }
 }
 

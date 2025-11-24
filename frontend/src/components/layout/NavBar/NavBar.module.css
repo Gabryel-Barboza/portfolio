@@ -45,7 +45,7 @@
   transition: max-height 0.3s ease-in, opacity 0.3s ease-in, visibility 0.1s;
 }
 .mobileNav > .animatedText {
-  margin-right: 20vw;
+  margin-right: 20%;
   font-size: 10em;
   color: #fff;
 }

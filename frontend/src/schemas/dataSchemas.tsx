@@ -21,7 +21,7 @@ type HobbySchema = {
 type TechSchema = {
   name: string;
   description: string;
-  level: string;
+  level: 'Básico' | 'Intermediário' | 'Avançado';
 };
 
 type DegreeSchema = {
@@ -32,7 +32,9 @@ type DegreeSchema = {
 
 type CourseSchema = {
   name: string;
-  date: string;
+  institute: string;
+  workload: string;
+  certificate: string;
 };
 
 interface EducationSchema {

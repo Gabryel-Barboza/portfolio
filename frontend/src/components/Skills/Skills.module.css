@@ -1,11 +1,23 @@
+.skills .levelDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 10px !important;
+  max-width: 400px;
+}
 .skills .skillCard {
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  margin: 0;
+  width: 100%;
 }
 
+.skillCard:hover {
+  transform: scale(1.05);
+}
 .skillCard p {
   display: flex;
   align-items: center;
@@ -25,17 +37,18 @@
 
 .skillDescription {
   display: inline-block;
+  position: absolute;
   overflow: hidden;
   visibility: hidden;
   opacity: 0;
-  margin: 10px 0;
   max-width: 0;
   max-height: 0;
   text-align: justify;
-  transition: max-width none, max-height 0.5s ease-in;
+  transition: max-width 0.3s ease-in, max-height 0.5s ease-in-out;
 }
 
 .descriptionToggled {
+  position: relative;
   visibility: visible;
   opacity: 1;
   max-width: 500px;
@@ -44,18 +57,26 @@
 
 @media screen and (min-width: 720px) {
   .skills {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    gap: 15px;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-areas: 'header header';
+    gap: 30px;
+    align-items: flex-start;
   }
   .skills h2 {
+    grid-area: header;
     width: 100%;
   }
-
+  .skills .levelDiv {
+    margin: 0 !important;
+  }
   .skills .skillCard {
     margin: 0;
-    width: 45%;
-    max-width: 400px;
+  }
+}
+
+@media screen and (min-width: 1020px) {
+  .skills {
+    grid-template-areas: 'header header header';
   }
 }

@@ -22,8 +22,6 @@ const NavBar = ({ sections, pageStyles, mainVisibility, onToggleMain }: Props) =
   const [idToScroll, setIdToScroll] = useState<string | undefined>(undefined);
   const isMobile = windowSize.width < 720;
 
-  console.log(windowSize.width);
-
   const options = useMemo(
     () => ({
       topOffset: 250,

@@ -9,8 +9,14 @@ import {
   TbBrandTailwind,
   TbBrandPhp,
   TbBrandDocker,
-  TbBrandUbuntu,
+  TbBrandReact,
+  TbBrandDjango,
+  TbBrandVue,
+  TbApi,
+  TbLink,
+  TbCircuitChangeover,
 } from 'react-icons/tb';
+import { FaUbuntu } from 'react-icons/fa6';
 
 import type { TechSchema } from '../../schemas/dataSchemas';
 
@@ -29,10 +35,15 @@ const SkillCard = ({ tech }: Props) => {
     ['mysql', TbBrandMysql],
     ['mongodb', TbBrandMongodb],
     ['tailwindcss', TbBrandTailwind],
+    ['fastapi', TbApi],
+    ['langchain', TbLink],
+    ['react', TbBrandReact],
+    ['vue.js', TbBrandVue],
+    ['django', TbBrandDjango],
     ['php', TbBrandPhp],
     ['docker', TbBrandDocker],
-    ['linux', TbBrandUbuntu],
-    // ['n8n', TbBrandN8N],
+    ['linux', FaUbuntu],
+    ['n8n', TbCircuitChangeover],
   ]);
 
   const TechIcon = iconMap.get(tech.name.toLowerCase());

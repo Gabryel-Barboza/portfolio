@@ -1,0 +1,79 @@
+.projectCard {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 800px;
+}
+.projectCard h3 {
+  font-weight: 900;
+  color: var(--project-title-color);
+}
+.projectCard p {
+  text-align: justify;
+  margin-bottom: 5px;
+}
+.projectCard div {
+  margin: 3px;
+}
+.projectCard ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.projectCard li {
+  box-shadow: 2px 1px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  padding: 2px 3px;
+  background-color: var(--tag-color);
+  font-size: 0.7em;
+}
+.projectCard button {
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  padding: 4px 6px;
+  margin-right: 10px;
+  background-color: transparent;
+}
+.projectCard button:hover {
+  transform: scale(1.1);
+  border-color: var(--border-color);
+}
+.projectCard button svg {
+  margin: 0 5px;
+  vertical-align: middle;
+}
+.projectCard a {
+  color: #fff;
+}
+.projectCard .viewProjectIcon {
+  display: inline-block;
+}
+.projectCard .viewProjectIcon svg {
+  vertical-align: baseline;
+}
+.projectCard .projectImg {
+  align-self: center;
+  visibility: hidden;
+  opacity: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 0;
+  max-height: 0;
+}
+
+.viewProjectBtn .viewProjectIcon {
+  transform: rotate(180deg);
+}
+
+.projectImg.toggled {
+  margin: 30px 0;
+  visibility: visible;
+  opacity: 1;
+  max-width: 300px;
+  max-height: 400px;
+}
+.projectImg img {
+  width: 100%;
+  height: 100%;
+}

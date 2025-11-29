@@ -1,5 +1,6 @@
 .projects h2 {
   justify-content: space-between;
+  max-width: 800px;
 }
 .projects h2 svg {
   vertical-align: middle;
@@ -17,54 +18,6 @@
 .sortBtn svg {
   margin-right: 5px;
   vertical-align: middle;
-}
-
-.projectCard {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-.projectCard h3 {
-  font-weight: 900;
-  color: var(--project-title-color);
-}
-.projectCard p {
-  text-align: justify;
-  margin-bottom: 5px;
-}
-.projectCard div {
-  margin: 3px;
-}
-.projectCard ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.projectCard li {
-  box-shadow: 2px 1px 1px rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
-  padding: 2px 3px;
-  background-color: var(--tag-color);
-  font-size: 0.7em;
-}
-.projectCard button {
-  cursor: pointer;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  padding: 4px 6px;
-  margin-right: 10px;
-  background-color: transparent;
-}
-.projectCard button:hover {
-  transform: scale(1.1);
-  border-color: var(--border-color);
-}
-.projectCard button svg {
-  margin: 0 5px;
-  vertical-align: middle;
-}
-.projectCard a {
-  color: #fff;
 }
 
 .projectLoadBtn {
@@ -85,9 +38,6 @@
 @media screen and (min-width: 1200px) {
   .projects {
     max-width: unset !important;
-  }
-  .projects * {
-    max-width: 800px;
   }
   .projects div:nth-of-type(even) {
     margin-left: 50%;

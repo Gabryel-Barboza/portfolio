@@ -1,5 +1,5 @@
 import { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
-import { BsGithub, BsArrowUpRight, BsArrowUp, BsArrowDown } from 'react-icons/bs';
+import { BsArrowUp, BsArrowDown } from 'react-icons/bs';
 
 import type { SectionTitleSchema } from '../../schemas/layoutSchemas';
 import type { ProjectSchema } from '../../schemas/dataSchemas';
@@ -7,6 +7,7 @@ import type { ProjectSchema } from '../../schemas/dataSchemas';
 import styles from './Projects.module.css';
 import useHovering from '../../hooks/useHovering';
 import useServerContext from '../../context/useServerContext';
+import ProjectCard from './ProjectCard';
 
 type Props = SectionTitleSchema;
 
@@ -69,31 +70,7 @@ const Projects = forwardRef<HTMLDivElement, Props>(
           </div>
         </h2>
         {sortedProjects ? (
-          sortedProjects.map((project, idx) => (
-            <div key={idx} className={styles.projectCard}>
-              <h3>{project.name}</h3>
-              <p>{project.description}</p>
-              <div>
-                <ul>
-                  {project.tags.map((tag, idx) => (
-                    <li key={idx}>{tag}</li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <button type="button">
-                  <a href={project.imageUrl}>
-                    Ver Projeto <BsArrowUpRight />
-                  </a>
-                </button>
-                <button type="button">
-                  <a href={project.projectUrl} target="_blank" rel="external">
-                    Repositório <BsGithub />
-                  </a>
-                </button>
-              </div>
-            </div>
-          ))
+          sortedProjects.map((project, idx) => <ProjectCard project={project} key={idx} />)
         ) : (
           <span>Não foi possível carregar os projetos disponíveis do repositório</span>
         )}

@@ -25,19 +25,18 @@ const Skills = ({ id, pageStyles, titleIcon: TitleIcon, titleText }: Props) => {
     ['Avançado', 'Domino Estas Tecnologias'],
   ]);
 
-  const { firstStack, secondStack, lastStack } = useMemo(() => {
-    if (!resume) return { firstStack: [], secondStack: [], lastStack: [] };
+  const { firstStack, secondStack, thirdStack } = useMemo(() => {
+    if (!resume) return { firstStack: [], secondStack: [], thirdStack: [] };
 
     const begTechs = resume.stack.filter((tech) => tech.level === 'Básico');
     const intTechs = resume.stack.filter((tech) => tech.level === 'Intermediário');
     const advTechs = resume.stack.filter((tech) => tech.level === 'Avançado');
 
-    const [firstStack, secondStack, lastStack] = [begTechs, intTechs, advTechs].sort(
+    const [firstStack, secondStack, thirdStack] = [begTechs, intTechs, advTechs].sort(
       (stackA, stackB) => stackB.length - stackA.length
     );
-    console.log(lastStack);
 
-    return { firstStack, secondStack, lastStack };
+    return { firstStack, secondStack, thirdStack };
   }, [resume]);
 
   return (
@@ -57,32 +56,32 @@ const Skills = ({ id, pageStyles, titleIcon: TitleIcon, titleText }: Props) => {
           {firstStack.length > 0 && (
             <div className={styles.levelDiv}>
               <h3>{levelTexts.get(firstStack[0].level)}</h3>
-              {firstStack.map((tech, idx) => (
-                <SkillCard key={idx} tech={tech} />
-              ))}
+              {firstStack.map((tech) => {
+                return <SkillCard key={tech.name} tech={tech} />;
+              })}
             </div>
           )}
           {secondStack.length > 0 && (
             <div className={styles.levelDiv}>
               <h3>{levelTexts.get(secondStack[0].level)}</h3>
-              {secondStack.map((tech, idx) => (
-                <SkillCard key={idx} tech={tech} />
+              {secondStack.map((tech) => (
+                <SkillCard key={tech.name} tech={tech} />
               ))}
             </div>
           )}
-          {lastStack.length > 0 && (
+          {thirdStack.length > 0 && (
             <div className={styles.levelDiv}>
-              <h3>{levelTexts.get(lastStack[0].level)}</h3>
-              {lastStack.map((tech, idx) => (
-                <SkillCard key={idx} tech={tech} />
+              <h3>{levelTexts.get(thirdStack[0].level)}</h3>
+              {thirdStack.map((tech) => (
+                <SkillCard key={tech.name} tech={tech} />
               ))}
             </div>
           )}
           {resume.extra && (
             <div className={`${styles.levelDiv} ${styles.extraTechDiv}`}>
               <h3>Utilizo Estas Tecnologias Fora da Programação</h3>
-              {resume.extra.map((tech, idx) => (
-                <SkillCard key={idx} tech={tech} />
+              {resume.extra.map((tech) => (
+                <SkillCard key={tech.name} tech={tech} />
               ))}
             </div>
           )}

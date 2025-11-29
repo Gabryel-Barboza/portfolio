@@ -34,7 +34,7 @@ type CourseSchema = {
   name: string;
   institute: string;
   workload: string;
-  certificate: string;
+  certificates: string[];
 };
 
 interface EducationSchema {

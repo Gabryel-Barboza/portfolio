@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import {
+  BsBook,
   BsBriefcaseFill,
   BsCodeSlash,
   BsFileEarmarkPerson,
@@ -18,10 +19,12 @@ import Skills from '../../components/Skills/Skills';
 import Contacts from '../../components/Contacts/Contacts';
 import NavBar from '../../components/layout/NavBar/NavBar';
 import useServerContext from '../../context/useServerContext';
+import Education from '../../components/Education/Education';
 
 const SECTIONS: SectionSchema[] = [
   { id: 'root', text: 'Início', icon: BsFillHouseDoorFill },
   { id: 'about-me', text: 'Sobre Mim', icon: BsFileEarmarkPerson },
+  { id: 'education', text: 'Educação', icon: BsBook },
   { id: 'projects', text: 'Projetos', icon: BsBriefcaseFill },
   { id: 'skills', text: 'Habilidades', icon: BsCodeSlash },
   { id: 'contacts', text: 'Contatos', icon: MdEmail },
@@ -84,26 +87,32 @@ const MainPage = () => {
             <AboutMe
               id={SECTIONS[1].id}
               pageStyles={styles}
-              titleIcon={BsFileEarmarkPerson}
+              titleIcon={SECTIONS[1].icon}
               titleText="Sobre Mim"
             />
-            <Projects
+            <Education
               id={SECTIONS[2].id}
               pageStyles={styles}
-              titleIcon={BsBriefcaseFill}
+              titleIcon={SECTIONS[2].icon}
+              titleText="Educação"
+            />
+            <Projects
+              id={SECTIONS[3].id}
+              pageStyles={styles}
+              titleIcon={SECTIONS[3].icon}
               titleText="Projetos"
               ref={projectSection}
             />
             <Skills
-              id={SECTIONS[3].id}
+              id={SECTIONS[4].id}
               pageStyles={styles}
-              titleIcon={BsCodeSlash}
+              titleIcon={SECTIONS[4].icon}
               titleText="Habilidades"
             />
             <Contacts
-              id={SECTIONS[4].id}
+              id={SECTIONS[5].id}
               pageStyles={styles}
-              titleIcon={MdEmail}
+              titleIcon={SECTIONS[5].icon}
               titleText="Contatos"
             />
           </main>

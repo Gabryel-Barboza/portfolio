@@ -73,6 +73,10 @@
   .skills .skillCard {
     margin: 0;
   }
+
+  .extraTechDiv {
+    grid-column: span 2;
+  }
 }
 
 @media screen and (min-width: 1020px) {

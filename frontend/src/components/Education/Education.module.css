@@ -1,0 +1,40 @@
+.education h2 {
+  padding-left: 5px;
+}
+
+.educationCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.educationCard h3 {
+  color: var(--emphasis-color);
+}
+.educationCard svg {
+  vertical-align: middle;
+  margin-right: 5px;
+  margin-bottom: 3px;
+}
+
+.institute {
+  font-weight: 900;
+}
+
+.date,
+.workload {
+  border-radius: 5px;
+  padding: 3px 5px;
+  font-size: 0.8em;
+  color: var(--text-color);
+  background-color: var(--primary-color);
+}
+
+.certificate:hover {
+  background-color: var(--primary-color);
+  border: 1px solid var(--border-color);
+}
+.certificate img {
+  width: 40%;
+  max-width: 100px;
+  margin: 10px;
+}

@@ -7,10 +7,9 @@ import { useState } from 'react';
 
 interface Props {
   project: ProjectSchema;
-  key: string | number;
 }
 
-const ProjectCard = ({ project, key }: Props) => {
+const ProjectCard = ({ project }: Props) => {
   const [showProjectImage, setShowProjectImage] = useState(false);
 
   const projectImageClass = `${styles.projectImg} ${showProjectImage ? styles.toggled : ''}`;
@@ -20,7 +19,7 @@ const ProjectCard = ({ project, key }: Props) => {
 
   return (
     <>
-      <div key={key} className={styles.projectCard}>
+      <div className={styles.projectCard}>
         <h3>{project.name}</h3>
         <p>{project.description}</p>
         <div>

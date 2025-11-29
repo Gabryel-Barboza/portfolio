@@ -20,11 +20,16 @@ const Education = ({ id, pageStyles, titleIcon: TitleIcon, titleText }: Props) =
     : '';
 
   const getCourseCertificates = (course: CourseSchema) => {
-    const certificates = course.certificates.map((certificate, idx) => (
-      <a key={idx} className={styles.certificate} href={certificate} target="_blank">
-        <img src={certificate} alt={`Certificado para ${course.name}`} />
-      </a>
-    ));
+    const certificates = course.certificates.map((certificate, idx) => {
+      const certificateId = certificate.split('id=')[1];
+      const certificateUrl = `https://drive.google.com/thumbnail?id=${certificateId}`;
+
+      return (
+        <a key={idx} className={styles.certificate} href={certificateUrl} target="_blank">
+          <img src={certificateUrl} alt={`Certificado para ${course.name}`} />
+        </a>
+      );
+    });
 
     return certificates;
   };

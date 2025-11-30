@@ -25,7 +25,7 @@ const Education = ({ id, pageStyles, titleIcon: TitleIcon, titleText }: Props) =
       const certificateUrl = `https://drive.google.com/thumbnail?id=${certificateId}`;
 
       return (
-        <a key={idx} className={styles.certificate} href={certificateUrl} target="_blank">
+        <a key={idx} className={styles.certificate} href={certificate} target="_blank">
           <img src={certificateUrl} alt={`Certificado para ${course.name}`} />
         </a>
       );

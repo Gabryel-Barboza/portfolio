@@ -59,6 +59,7 @@ interface ResumeSchema {
 interface getSortedProjectsConf {
   sortFn?: (a: ProjectSchema, b: ProjectSchema) => number;
   orient?: 'asc' | 'desc';
+  tagFilter?: string[];
 }
 
 export type {

@@ -88,32 +88,32 @@ const MainPage = () => {
               id={SECTIONS[1].id}
               pageStyles={styles}
               titleIcon={SECTIONS[1].icon}
-              titleText="Sobre Mim"
+              titleText={SECTIONS[1].text}
             />
             <Education
               id={SECTIONS[2].id}
               pageStyles={styles}
               titleIcon={SECTIONS[2].icon}
-              titleText="Educação"
+              titleText={SECTIONS[2].text}
             />
             <Projects
               id={SECTIONS[3].id}
               pageStyles={styles}
               titleIcon={SECTIONS[3].icon}
-              titleText="Projetos"
+              titleText={SECTIONS[3].text}
               ref={projectSection}
             />
             <Skills
               id={SECTIONS[4].id}
               pageStyles={styles}
               titleIcon={SECTIONS[4].icon}
-              titleText="Habilidades"
+              titleText={SECTIONS[4].text}
             />
             <Contacts
               id={SECTIONS[5].id}
               pageStyles={styles}
               titleIcon={SECTIONS[5].icon}
-              titleText="Contatos"
+              titleText={SECTIONS[5].text}
             />
           </main>
         )

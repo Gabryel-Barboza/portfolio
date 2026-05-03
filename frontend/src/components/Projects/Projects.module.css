@@ -1,5 +1,6 @@
 .projects h2 {
   justify-content: space-between;
+  align-items: center;
   max-width: 800px;
 }
 .projects h2 svg {
@@ -8,16 +9,33 @@
   margin-bottom: 4px;
   padding-left: 4px;
 }
+.projects div:has(.sortBtn) {
+  max-width: 30%;
+  margin-bottom: 10px;
+}
 
 .sortBtn {
   cursor: pointer;
   margin-right: 10px;
   padding: 5px 8px;
   font-size: 0.4em;
+  width: 60px;
+  text-align: left;
 }
 .sortBtn svg {
-  margin-right: 5px;
   vertical-align: middle;
+  margin-right: 5px;
+}
+
+.tagFilter ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  gap: 5px;
+}
+.tagFilter span {
+  margin-right: 10px;
+  color: #fff;
 }
 
 .projectLoadBtn {
@@ -41,5 +59,12 @@
   }
   .projects div:nth-of-type(even) {
     margin-left: 50%;
+  }
+  .projects .sortBtn {
+    font-size: 0.3em;
+  }
+  .projects .sortBtn svg {
+    width: 12px;
+    margin-right: 6px;
   }
 }

@@ -1,17 +1,19 @@
+import { useState } from 'react';
+import type { ReactNode } from 'react';
+
 import { BsGithub, BsArrowUp } from 'react-icons/bs';
 
 import type { ProjectSchema } from '../../schemas/dataSchemas';
 
 import styles from './ProjectCard.module.css';
-import { useState } from 'react';
 
 interface Props {
   project: ProjectSchema;
+  tags: ReactNode[];
 }
 
-const ProjectCard = ({ project }: Props) => {
+const ProjectCard = ({ project, tags }: Props) => {
   const [showProjectImage, setShowProjectImage] = useState(false);
-
   const projectImageClass = `${styles.projectImg} ${showProjectImage ? styles.toggled : ''}`;
   const viewProjectBtnClass = showProjectImage ? styles.viewProjectBtn : '';
 
@@ -23,11 +25,7 @@ const ProjectCard = ({ project }: Props) => {
         <h3>{project.name}</h3>
         <p>{project.description}</p>
         <div>
-          <ul>
-            {project.tags.map((tag, idx) => (
-              <li key={idx}>{tag}</li>
-            ))}
-          </ul>
+          <ul>{tags}</ul>
         </div>
         <div>
           {project.imageUrl && (

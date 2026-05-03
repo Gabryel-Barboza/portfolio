@@ -33,6 +33,7 @@
 .main h2 {
   display: flex;
   gap: 10px;
+  padding-left: 10px;
   border: 1px solid transparent;
   border-right: 1px solid var(--border-color);
   margin-bottom: 10px;

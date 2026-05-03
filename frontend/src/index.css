@@ -52,6 +52,29 @@ html {
   --link-color: var(--c-aquamarine-600);
   --link-hover-color: var(--c-aquamarine-800);
   --link-button-color: var(--c-aquamarine-600);
+
+  --color-python: #3776ab;
+  --color-typescript: #3178c6;
+  --color-mysql: #4479a1;
+  --color-tailwindcss: #06b6d4;
+  --color-langchain: #1c3c3c;
+  --color-fastapi: #05998b;
+  --color-react: #043cad;
+  --color-mongodb: #47a248;
+  --color-django: #092e20;
+  --color-vuejs: #4fc08d;
+  --color-php: #777bb4;
+  --color-ai: #8a2be2;
+  --color-agentic-ai: #4b0082;
+  --color-fullstack: #ff4500;
+  --color-frontend: #20b2aa;
+  --color-backend: #483d8b;
+  --color-n8n: #ff6c37;
+  --color-html5: #f74e11;
+  --color-docker: #2496ed;
+  --color-css3: #0e96ff;
+  --color-javascript: #f7df1e;
+  --color-nodejs: #339933;
 }
 
 body {

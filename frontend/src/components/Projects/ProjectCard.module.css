@@ -20,13 +20,6 @@
   flex-wrap: wrap;
   gap: 8px;
 }
-.projectCard li {
-  box-shadow: 2px 1px 1px rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
-  padding: 2px 3px;
-  background-color: var(--tag-color);
-  font-size: 0.7em;
-}
 .projectCard button {
   cursor: pointer;
   border: 1px solid transparent;

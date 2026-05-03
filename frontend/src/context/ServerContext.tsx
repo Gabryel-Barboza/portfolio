@@ -7,7 +7,7 @@ interface ServerContextType {
   projects?: ProjectSchema[];
   getResume: () => void;
   getProjects: () => void;
-  getSortedProjects: ({ sortFn, orient }: getSortedProjectsConf) => ProjectSchema[];
+  getSortedProjects: ({ sortFn, orient, tagFilter }: getSortedProjectsConf) => ProjectSchema[];
 }
 
 const ServerContext = createContext<ServerContextType | undefined>(undefined);

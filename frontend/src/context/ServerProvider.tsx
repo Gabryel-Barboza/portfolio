@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import type { ProjectSchema, getSortedProjectsConf } from '../schemas/dataSchemas';
 import useApiData from '../hooks/useApiData';
@@ -9,7 +9,7 @@ import { sortArrayByDate } from '../utils/arrayUtils';
 const ServerProvider = ({ children }: { children: ReactNode }) => {
   const { projects, resume, getResume, getProjects, isLoadingResume, isLoadingProjects } =
     useApiData();
-  const [isLoading, setIsLoading] = useState(true);
+  const isLoading = isLoadingResume || isLoadingProjects;
 
   // Inicializar contexto
   useEffect(() => {
@@ -17,30 +17,31 @@ const ServerProvider = ({ children }: { children: ReactNode }) => {
     if (!projects) getProjects();
   }, [getResume, getProjects, projects, resume]);
 
-  useEffect(() => {
-    if (isLoadingResume || isLoadingProjects) setIsLoading(true);
-    else setIsLoading(false);
-  }, [isLoadingProjects, isLoadingResume]);
-
   const getSortedProjects = useCallback(
-    ({ sortFn, orient }: getSortedProjectsConf) => {
-      if (projects) {
-        const sortFunc = sortFn
-          ? sortFn
-          : (a: ProjectSchema, b: ProjectSchema) =>
-              sortArrayByDate(a.lastUpdate, b.lastUpdate, orient);
+    ({ sortFn, orient, tagFilter }: getSortedProjectsConf) => {
+      if (!projects) return [];
 
-        const sortedProjects = [...projects].sort(sortFunc);
+      const sortFunc = sortFn
+        ? sortFn
+        : (a: ProjectSchema, b: ProjectSchema) =>
+            sortArrayByDate(a.lastUpdate, b.lastUpdate, orient);
 
-        return sortedProjects;
-      }
+      let sortedProjects = [...projects].sort(sortFunc);
 
-      return [];
+      if (tagFilter && tagFilter.length > 0)
+        sortedProjects = sortedProjects.filter((project) =>
+          tagFilter.every((tag) => project.tags.includes(tag)),
+        );
+
+      return sortedProjects;
     },
-    [projects]
+    [projects],
   );
 
-  const value = { isLoading, resume, getResume, projects, getProjects, getSortedProjects };
+  const value = useMemo(
+    () => ({ isLoading, resume, getResume, projects, getProjects, getSortedProjects }),
+    [isLoading, resume, getResume, projects, getProjects, getSortedProjects],
+  );
 
   return <ServerContext.Provider value={value}>{children}</ServerContext.Provider>;
 };

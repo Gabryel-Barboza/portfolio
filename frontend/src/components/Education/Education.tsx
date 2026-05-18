@@ -49,8 +49,8 @@ const Education = ({ id, pageStyles, titleIcon: TitleIcon, titleText }: Props) =
       {resume && (
         <div className={styles.educationCard}>
           <h3>Formação Acadêmica</h3>
-          {resume.education.degrees.map((degree) => (
-            <div>
+          {resume.education.degrees.map((degree, idx) => (
+            <div key={idx}>
               <p className={styles.institute}>
                 {' '}
                 <TbSchool /> {degree.college}

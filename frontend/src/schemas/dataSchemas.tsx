@@ -1,10 +1,16 @@
+type ProjectMediaSchema = {
+  type: 'video' | 'picture';
+  url: string;
+  altText: string;
+};
+
 interface ProjectSchema {
   name: string;
-  imageUrl: string;
   description: string;
   tags: string[];
   lastUpdate: string;
   projectUrl: string;
+  projectMedia: ProjectMediaSchema[];
 }
 
 type ContactType = 'email' | 'phone' | 'linkedin' | 'github';
@@ -70,6 +76,7 @@ export type {
   EducationSchema,
   HobbySchema,
   ProjectSchema,
+  ProjectMediaSchema,
   ResumeSchema,
   TechSchema,
   getSortedProjectsConf,

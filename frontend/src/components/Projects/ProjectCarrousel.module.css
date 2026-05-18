@@ -1,0 +1,37 @@
+.carrousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+div.btnContainer {
+  margin: auto;
+  margin-top: 8px;
+  width: max-content;
+}
+
+button.carrouselBtn {
+  margin: 5px;
+  background-color: var(--tag-color);
+  border-radius: 5px;
+}
+
+.carrouselTrack {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.slide {
+  flex: 0 0 100%; /* Cada slide ocupa exatamente 100% da largura da viewport */
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mediaElement {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Garante que o vídeo/imagem não seja cortado */
+}

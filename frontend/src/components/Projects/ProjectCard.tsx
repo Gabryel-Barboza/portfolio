@@ -6,6 +6,7 @@ import { BsGithub, BsArrowUp } from 'react-icons/bs';
 import type { ProjectSchema } from '../../schemas/dataSchemas';
 
 import styles from './ProjectCard.module.css';
+import ProjectCarrousel from './ProjectCarrousel';
 
 interface Props {
   project: ProjectSchema;
@@ -13,11 +14,10 @@ interface Props {
 }
 
 const ProjectCard = ({ project, tags }: Props) => {
-  const [showProjectImage, setShowProjectImage] = useState(false);
-  const projectImageClass = `${styles.projectImg} ${showProjectImage ? styles.toggled : ''}`;
-  const viewProjectBtnClass = showProjectImage ? styles.viewProjectBtn : '';
+  const [showProjectCarrousel, setShowProjectCarrousel] = useState(false);
+  const viewProjectBtnClass = showProjectCarrousel ? styles.viewProjectBtn : '';
 
-  const toggleProjectImage = () => setShowProjectImage(!showProjectImage);
+  const toggleProjectImage = () => setShowProjectCarrousel(!showProjectCarrousel);
 
   return (
     <>
@@ -28,7 +28,7 @@ const ProjectCard = ({ project, tags }: Props) => {
           <ul>{tags}</ul>
         </div>
         <div>
-          {project.imageUrl && (
+          {project.projectMedia[0] && (
             <button className={viewProjectBtnClass} type="button" onClick={toggleProjectImage}>
               Ver Projeto{' '}
               <span className={styles.viewProjectIcon}>
@@ -44,11 +44,7 @@ const ProjectCard = ({ project, tags }: Props) => {
             </button>
           )}
         </div>
-        {project.imageUrl && (
-          <div className={projectImageClass}>
-            <img src={project.imageUrl} alt={`Imagem de ${project.name}`}></img>
-          </div>
-        )}
+        {showProjectCarrousel && <ProjectCarrousel mediaList={project.projectMedia} />}
       </div>
     </>
   );

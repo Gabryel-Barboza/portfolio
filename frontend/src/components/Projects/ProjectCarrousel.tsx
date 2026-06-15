@@ -50,20 +50,22 @@ const ProjectCarrousel = ({ mediaList }: Props) => {
           </div>
         ))}
       </div>
-      <div className={styles.btnContainer}>
-        <button
-          className={`${styles.carrouselBtn} ${styles.btnPrev}`}
-          onClick={() => handleCarrouselBtn('left')}
-        >
-          <BsArrowLeft />
-        </button>
-        <button
-          className={`${styles.carrouselBtn} ${styles.btnNext}`}
-          onClick={() => handleCarrouselBtn('right')}
-        >
-          <BsArrowRight />
-        </button>
-      </div>
+      <button
+        className={`${styles.carrouselBtn} ${styles.btnPrev}`}
+        onClick={() => handleCarrouselBtn('left')}
+        type="button"
+        aria-label="Imagem anterior"
+      >
+        <BsArrowLeft />
+      </button>
+      <button
+        className={`${styles.carrouselBtn} ${styles.btnNext}`}
+        onClick={() => handleCarrouselBtn('right')}
+        type="button"
+        aria-label="Próxima imagem"
+      >
+        <BsArrowRight />
+      </button>
     </div>
   );
 };

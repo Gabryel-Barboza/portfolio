@@ -57,7 +57,9 @@
   .projects {
     max-width: unset !important;
   }
-  .projects div:nth-of-type(even) {
+
+  /* :global evita hash de classes em css modules */
+  .projects :global(.projectCard):nth-of-type(even) {
     margin-left: 50%;
   }
   .projects .sortBtn {

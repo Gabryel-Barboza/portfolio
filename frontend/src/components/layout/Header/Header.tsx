@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { BsArrowUpRight } from 'react-icons/bs';
+import { FaAngleRight } from 'react-icons/fa6';
 
 import styles from './Header.module.css';
 import { useEffect, useRef } from 'react';
@@ -74,7 +75,7 @@ const Header = ({
         {onMainToggle && (
           <div className={toggleButtonClass}>
             <button type="button" onClick={onMainToggle}>
-              {'>'}
+              <FaAngleRight />
             </button>
           </div>
         )}

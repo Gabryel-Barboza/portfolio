@@ -39,13 +39,113 @@
 .projectCard a {
   color: #fff;
 }
-.projectCard .viewProjectIcon {
-  display: inline-block;
-}
-.projectCard .viewProjectIcon svg {
-  vertical-align: baseline;
+
+.projectTags,
+.projectRepo {
+  align-self: flex-start;
 }
 
-.viewProjectBtn .viewProjectIcon {
-  transform: rotate(180deg);
+.projectBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.previewGallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  width: 180px;
+  flex-shrink: 0;
+  overflow: hidden;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  border: 1px solid var(--section-border-color);
+  border-radius: 8px;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.previewGallery:hover {
+  border-color: var(--border-color);
+  box-shadow: 0 4px 12px var(--border-transparent-color);
+}
+.previewGallery:focus-visible {
+  outline: 2px solid var(--emphasis-color);
+  outline-offset: 2px;
+}
+
+.galleryCell {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+
+.galleryFull {
+  grid-column: 1 / -1;
+  aspect-ratio: 2 / 1;
+}
+
+.galleryThumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.galleryOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  font-size: 1.2em;
+  font-weight: 800;
+  color: #fff;
+  pointer-events: none;
+}
+
+.previewSingle {
+  width: 180px;
+  flex-shrink: 0;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  border: 1px solid var(--section-border-color);
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.previewSingle:hover {
+  border-color: var(--border-color);
+  box-shadow: 0 4px 12px var(--border-transparent-color);
+}
+.previewSingle:focus-visible {
+  outline: 2px solid var(--emphasis-color);
+  outline-offset: 2px;
+}
+
+.singleThumb {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+@media (min-width: 720px) {
+  .projectBody {
+    display: block;
+    overflow: hidden;
+  }
+
+  div.previewGallery,
+  div.previewSingle {
+    float: left;
+    margin: 3px 16px 8px 0;
+  }
 }

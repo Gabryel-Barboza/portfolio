@@ -29,10 +29,6 @@ const Projects = forwardRef<HTMLDivElement, Props>(
     const showTagFilter = selectedTags?.length ? selectedTags.length > 0 : false;
     const hasMoreProjects = projects ? projectsLimit <= projects.length : false;
 
-    useEffect(() => {
-      setProjects(getSortedProjects({ orient: 'desc', tagFilter: selectedTags }));
-    }, [getSortedProjects, selectedTags]);
-
     const sortedProjects = useMemo(() => {
       if (!projects) return [];
       return projects.slice(0, projectsLimit);
@@ -52,6 +48,10 @@ const Projects = forwardRef<HTMLDivElement, Props>(
         return Array.from(tagSet);
       });
     };
+
+    useEffect(() => {
+      setProjects(getSortedProjects({ orient: 'desc', tagFilter: selectedTags }));
+    }, [getSortedProjects, selectedTags]);
 
     return (
       <section id={id} className={styles.projects} ref={ref}>

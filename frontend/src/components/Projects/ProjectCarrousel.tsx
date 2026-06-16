@@ -20,15 +20,17 @@ const ProjectCarrousel = ({ mediaList }: Props) => {
     });
   };
 
+  const currentMedia = mediaList[currentIndex];
+
   return (
     <div className={styles.carrousel}>
       <div
         className={styles.carrouselTrack}
-        style={{ transform: `translateX(-${currentIndex * 101}%)` }}
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {mediaList.map((media, idx) => (
           <div className={styles.slide} key={idx}>
-            {media.type == 'video' ? (
+            {media.type === 'video' ? (
               <video
                 className={styles.mediaElement}
                 src={media.url}
@@ -66,6 +68,11 @@ const ProjectCarrousel = ({ mediaList }: Props) => {
       >
         <BsArrowRight />
       </button>
+      {currentMedia.altText && (
+        <div className={styles.caption}>
+          <p>{currentMedia.altText}</p>
+        </div>
+      )}
     </div>
   );
 };
